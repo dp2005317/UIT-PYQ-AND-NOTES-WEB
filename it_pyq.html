@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Branch // Syllabus, Notes & PYQs</title>
+  
+  <!-- Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Design System (Apple Minimalist) -->
+  <style>
+    /* Styling tokens */
+    :root {
+      --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --bg-primary: #f5f5f7;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #f0f0f3;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --text-muted: #aeaeb2;
+      --border-color: #e5e5ea;
+      --accent-color: #000000;
+      --accent-contrast: #ffffff;
+      --accent-glow: rgba(0, 0, 0, 0.05);
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      --header-bg: rgba(255, 255, 255, 0.8);
+      --border-radius: 18px;
+      --border-radius-lg: 24px;
+      --border-radius-sm: 12px;
+      --transition-speed: 0.35s;
+      --transition-easing: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #000000;
+      --bg-secondary: #111111;
+      --bg-tertiary: #1c1c1e;
+      --text-primary: #f5f5f7;
+      --text-secondary: #86868b;
+      --text-muted: #48484a;
+      --border-color: #2c2c2e;
+      --accent-color: #ffffff;
+      --accent-contrast: #000000;
+      --accent-glow: rgba(255, 255, 255, 0.08);
+      --card-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      --header-bg: rgba(17, 17, 17, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color var(--transition-speed) var(--transition-easing),
+                  color var(--transition-speed) var(--transition-easing);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--border-color);
+      border-radius: 20px;
+    }
+
+    .app-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px 64px 24px;
+      flex: 1;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* Core Nav Header */
+    .site-header {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background-color: var(--header-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      transition: background-color var(--transition-speed) var(--transition-easing),
+                  border-color var(--transition-speed) var(--transition-easing);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 72px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo span {
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Button styles */
+    .btn-icon {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s var(--transition-easing);
+    }
+
+    .btn-icon:hover {
+      background-color: var(--text-primary);
+      color: var(--bg-secondary);
+      border-color: var(--text-primary);
+      transform: scale(1.05);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: var(--accent-contrast);
+      border: none;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s var(--transition-easing);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* Main Banner & Dashboard */
+    .hero-banner {
+      margin-top: 48px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .hero-pretitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* Global Search Box */
+    .search-container {
+      max-width: 580px;
+      width: 100%;
+      margin: 32px auto 48px auto;
+      position: relative;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+    .global-search-input {
+      width: 100%;
+      height: 54px;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 0 20px 0 52px;
+      font-size: 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      outline: none;
+      transition: all 0.3s var(--transition-easing);
+      box-shadow: var(--card-shadow);
+    }
+
+    .global-search-input:focus {
+      border-color: var(--text-primary);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+
+    /* Stats Grid */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 750px;
+      margin: 0 auto 48px auto;
+    }
+
+    .stat-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Year selector tab grid */
+    .year-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .year-tab-button {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 20px 16px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.3s var(--transition-easing);
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .year-tab-button::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--accent-color);
+      transform: translateY(4px);
+      transition: transform 0.3s var(--transition-easing);
+    }
+
+    .year-tab-button.active {
+      border-color: var(--text-primary);
+      background-color: var(--bg-tertiary);
+    }
+
+    .year-tab-button.active::after {
+      transform: translateY(0);
+    }
+
+    .year-tab-button:hover {
+      transform: translateY(-2px);
+      border-color: var(--text-primary);
+    }
+
+    .year-num {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+    }
+
+    .year-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Subjects List */
+    .subjects-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .subject-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 24px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s var(--transition-easing);
+    }
+
+    .subject-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--text-primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .subject-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .subject-code {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background-color: var(--bg-tertiary);
+      padding: 4px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .subject-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    .subject-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin-bottom: 16px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .subject-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .subject-action-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Modal Subject Detail Drawer */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--transition-easing);
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-content {
+      width: 100%;
+      max-width: 650px;
+      height: 100%;
+      background-color: var(--bg-secondary);
+      border-left: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--transition-easing);
+      overflow: hidden;
+    }
+
+    .drawer-overlay.active .drawer-content {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .drawer-close {
+      background: var(--bg-tertiary);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .drawer-close:hover {
+      background-color: var(--text-primary);
+      color: var(--bg-secondary);
+    }
+
+    .drawer-tabs {
+      display: flex;
+      background-color: var(--bg-primary);
+      padding: 4px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .drawer-tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-secondary);
+      border-radius: var(--border-radius-sm);
+      transition: all 0.25s var(--transition-easing);
+    }
+
+    .drawer-tab-btn.active {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      background-color: var(--bg-primary);
+    }
+
+    /* Syllabus modules */
+    .module-item {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--card-shadow);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .module-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .module-topic-tag {
+      display: inline-block;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* PYQ List */
+    .pyq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .pyq-item {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s;
+    }
+
+    .pyq-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pyq-icon-box {
+      width: 48px;
+      height: 48px;
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+    }
+
+    .pyq-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .pyq-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .download-btn {
+      min-width: 120px;
+      height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.25s;
+    }
+
+    .download-btn:hover {
+      background-color: var(--accent-color);
+      color: var(--accent-contrast);
+      border-color: var(--accent-color);
+    }
+
+    .download-btn.downloading {
+      background-color: var(--bg-tertiary);
+      cursor: not-allowed;
+      border-color: var(--border-color);
+      color: var(--text-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-progress-bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      background-color: var(--text-primary);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .download-btn.success {
+      background-color: #27c160;
+      color: white !important;
+      border-color: #27c160;
+      cursor: default;
+    }
+
+    /* Quick revision notes */
+    .notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .notes-block {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .notes-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .notes-body {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .notes-body p {
+      margin-bottom: 12px;
+    }
+
+    /* Flashcard flipped styling */
+    .flashcard-wrapper {
+      max-width: 420px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .flashcard-box {
+      perspective: 1000px;
+      width: 100%;
+      height: 240px;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flashcard-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--border-radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flashcard-front {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .flashcard-back {
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      transform: rotateY(180deg);
+      border-color: var(--text-primary);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .card-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .flashcard-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 12px;
+    }
+
+    .flashcard-num-indicator {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* Key Setup Dialog modal */
+    .settings-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 110;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .settings-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .settings-modal {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 32px;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: var(--card-shadow);
+      transform: scale(0.95);
+      transition: transform 0.3s var(--transition-easing);
+    }
+
+    .settings-modal-overlay.active .settings-modal {
+      transform: scale(1);
+    }
+
+    .settings-modal h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .settings-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 44px;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0 12px;
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      font-size: 0.9rem;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .input-field:focus {
+      border-color: var(--text-primary);
+    }
+
+    .settings-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* AI Chat Widget Floating Components */
+    .ai-chat-bubble {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background-color: var(--accent-color);
+      color: var(--accent-contrast);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      z-index: 45;
+      transition: all 0.3s var(--transition-easing);
+      border: 1px solid var(--border-color);
+    }
+
+    .ai-chat-bubble:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .ai-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background-color: #27c160;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-secondary);
+    }
+
+    /* AI Chat Panel */
+    .ai-chat-panel {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      width: 380px;
+      max-width: calc(100vw - 48px);
+      height: 500px;
+      max-height: 70vh;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s var(--transition-easing);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+    }
+
+    .ai-chat-panel.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .chat-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-tertiary);
+    }
+
+    .chat-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-logo-box {
+      width: 32px;
+      height: 32px;
+      background-color: var(--accent-color);
+      color: var(--accent-contrast);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .chat-msg.model {
+      align-self: flex-start;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .chat-msg.user {
+      align-self: flex-end;
+      background-color: var(--accent-color);
+      color: var(--accent-contrast);
+    }
+
+    .chat-input-form {
+      padding: 12px;
+      border-t: 1px solid var(--border-color);
+      display: flex;
+      gap: 8px;
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .chat-text-input {
+      flex: 1;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .chat-text-input:focus {
+      border-color: var(--text-primary);
+    }
+
+    .chat-send-btn {
+      width: 38px;
+      height: 38px;
+      background-color: var(--accent-color);
+      color: var(--accent-contrast);
+      border: none;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+
+    .chat-send-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Toast Notification */
+    .toast-notif {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background-color: var(--text-primary);
+      color: var(--bg-secondary);
+      padding: 12px 20px;
+      border-radius: var(--border-radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: var(--card-shadow);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s var(--transition-easing);
+    }
+
+    .toast-notif.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Animation frames */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsiveness */
+    @media (max-width: 900px) {
+      .year-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .subjects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .year-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-bar {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .drawer-content {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand" onclick="resetState()">
+        <div class="brand-logo">
+          IT <span>// PYQ & NOTES</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn-icon" onclick="toggleSettings(true)" title="Configure Gemini API Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" /></svg>
+        </button>
+        <button class="btn-icon" onclick="toggleTheme()" title="Toggle Light/Dark Theme" id="theme-toggle-btn">
+          <!-- Populated by JS -->
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Core Content Container -->
+  <main class="app-container">
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <div class="hero-pretitle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" /><path d="M9 13h4M12 10v6" /></svg>
+        <span>Information Technology Curriculum</span>
+      </div>
+      <h1 class="hero-title">Elevate Your Engineering Journey.</h1>
+      <p class="hero-subtitle">
+        Minimalist visual database containing verified syllabi, custom revision blueprints, and simulated previous year question documents.
+      </p>
+    </div>
+
+    <!-- Search Engine Input -->
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+        <input 
+          type="text" 
+          id="global-search-input" 
+          class="global-search-input" 
+          placeholder="Search course name, code, modules, or key concepts..."
+          oninput="handleSearch(this.value)"
+        />
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number" id="stats-subjects-count">16 Core</div>
+        <div class="stat-label">IT Syllabus Subjects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stats-pyqs-count">48 Files</div>
+        <div class="stat-label">Simulated past exams</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100% Free</div>
+        <div class="stat-label">Integrated AI Prep</div>
+      </div>
+    </div>
+
+    <!-- Year selector tabs -->
+    <div class="year-grid" id="year-tabs-container">
+      <button class="year-tab-button" onclick="changeYear(1)" id="year-btn-1">
+        <span class="year-num">Year I</span>
+        <span class="year-name">Engineering Basics</span>
+      </button>
+      <button class="year-tab-button active" onclick="changeYear(2)" id="year-btn-2">
+        <span class="year-num">Year II</span>
+        <span class="year-name">Core Structures</span>
+      </button>
+      <button class="year-tab-button" onclick="changeYear(3)" id="year-btn-3">
+        <span class="year-num">Year III</span>
+        <span class="year-name">Advanced Systems</span>
+      </button>
+      <button class="year-tab-button" onclick="changeYear(4)" id="year-btn-4">
+        <span class="year-num">Year IV</span>
+        <span class="year-name">Cloud & Specialization</span>
+      </button>
+    </div>
+
+    <!-- Subjects Grid Row -->
+    <div class="subjects-title-row">
+      <h2 style="font-size: 1.25rem;" id="subjects-heading">Year II Courses & Syllabus</h2>
+      <span class="text-secondary" style="font-size: 0.85rem;" id="subjects-counter">4 courses loaded</span>
+    </div>
+
+    <div class="subjects-grid" id="subjects-grid">
+      <!-- Dynamically injected -->
+    </div>
+  </main>
+
+  <!-- Floating AI Assistant bubble trigger -->
+  <div class="ai-chat-bubble" onclick="toggleAIChat()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" /><path d="M9 13h4M12 10v6" /></svg>
+    <div class="ai-badge"></div>
+  </div>
+
+  <!-- AI Chat Panel -->
+  <div class="ai-chat-panel" id="ai-chat-panel">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-logo-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" /></svg>
+        </div>
+        <div>
+          <h4 style="font-size: 0.85rem; font-weight: 600;" id="ai-tutor-title">IT AI Tutor</h4>
+          <p style="font-size: 10px; color: var(--text-secondary);" id="ai-tutor-subtitle">Active & Ready</p>
+        </div>
+      </div>
+      <button class="drawer-close" style="width: 28px; height: 28px;" onclick="toggleAIChat(false)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </button>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="chat-messages" id="chat-messages">
+      <!-- Injected -->
+    </div>
+
+    <!-- Form Input -->
+    <form class="chat-input-form" onsubmit="handleSendChat(event)">
+      <input 
+        type="text" 
+        id="chat-text-input" 
+        class="chat-text-input" 
+        placeholder="Ask a concept or question..."
+        required
+      />
+      <button type="submit" class="chat-send-btn" id="chat-send-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Settings / API Modal -->
+  <div class="settings-modal-overlay" id="settings-modal-overlay" onclick="toggleSettings(false)">
+    <div class="settings-modal" onclick="event.stopPropagation()">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" /></svg>
+        Gemini API Configuration
+      </h3>
+      <p class="settings-desc">
+        This portal features a live AI Study assistant. To connect it directly to the official **Gemini 2.5 Flash** model, paste your Gemini API Key below. The key is saved locally in your own browser's secure cache and is never sent to any external server.
+      </p>
+      <input 
+        type="password" 
+        id="settings-api-input" 
+        class="input-field" 
+        placeholder="Paste your Gemini API key here..."
+      />
+      <div class="settings-actions">
+        <button class="btn-icon" onclick="toggleSettings(false)" style="width: auto; padding: 0 16px; font-size: 0.85rem;">
+          Cancel
+        </button>
+        <button class="btn-primary" onclick="saveApiKey()">
+          Save Config
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-Over Drawer Detail Pane -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeSubjectDrawer()">
+    <div class="drawer-content" onclick="event.stopPropagation()">
+      <!-- Header -->
+      <div class="drawer-header" id="drawer-header">
+        <!-- Injected -->
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="drawer-tabs">
+        <button class="drawer-tab-btn active" id="tab-btn-syllabus" onclick="switchDrawerTab('syllabus')">Syllabus</button>
+        <button class="drawer-tab-btn" id="tab-btn-pyq" onclick="switchDrawerTab('pyq')">Past PYQs</button>
+        <button class="drawer-tab-btn" id="tab-btn-notes" onclick="switchDrawerTab('notes')">Revision</button>
+        <button class="drawer-tab-btn" id="tab-btn-flashcard" onclick="switchDrawerTab('flashcard')">Prep Cards</button>
+      </div>
+
+      <!-- Scrollable Body -->
+      <div class="drawer-body" id="drawer-body">
+        <!-- Injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Toast Container -->
+  <div class="toast-notif" id="toast-notif">
+    <!-- Injected -->
+  </div>
+
+  <!-- Core Javascript Logic -->
+  <script>
+    // State management
+    const state = {
+      activeYear: 2,
+      searchQuery: '',
+      selectedSubject: null,
+      isAIChatOpen: false,
+      isSettingsOpen: false,
+      activeDrawerTab: 'syllabus',
+      downloadStates: {},
+      currentFlashcardIndex: 0,
+      isFlashcardFlipped: false,
+      apiKey: localStorage.getItem('gemini_api_key') || '',
+      theme: localStorage.getItem('theme') || 'dark',
+      chatMessages: [
+        { role: 'model', text: 'Hi there! I am your IT Branch AI Assistant. Ask me anything about your syllabus, concepts, or PYQs.' }
+      ]
+    };
+
+    // Full detailed curriculum database
+    const SYLLABUS_DATA = {
+      1: [
+        { 
+          id: 'math1', 
+          name: 'Engineering Mathematics I', 
+          code: 'IT101', 
+          description: 'Calculus, linear algebra, and differential equations.',
+          modules: [
+            { title: "Module 1: Single Variable Calculus", topics: ["Taylor's series", "Maclaurin's series", "Indeterminate forms", "L'Hospital's rule", "Rolle's Theorem"] },
+            { title: "Module 2: Linear Algebra", topics: ["Matrix rank", "Eigenvalues & Eigenvectors", "Cayley-Hamilton Theorem", "Systems of linear equations"] },
+            { title: "Module 3: Integral Calculus", topics: ["Double integrals", "Triple integrals", "Change of variables", "Area and volume computations"] },
+            { title: "Module 4: Differential Equations", topics: ["First-order linear equations", "Exact equations", "Higher-order homogeneous equations"] },
+            { title: "Module 5: Infinite Series", topics: ["Convergence tests", "Ratio test", "Comparison test", "Alternating series test"] }
+          ],
+          notes: [
+            { title: "Calculus Fundamentals", content: "Understanding Rolle's theorem is key for intermediate values. The theorem guarantees a critical point (where f'(c) = 0) in an interval [a,b] if f(a) = f(b) for a continuous and differentiable function." },
+            { title: "Eigenvalue Diagnostics", content: "Eigenvalues are solved by setting det(A - λI) = 0. The sum of eigenvalues equals the trace of the matrix, while their product equals the determinant." }
+          ],
+          flashcards: [
+            { question: "What does the Cayley-Hamilton theorem state?", answer: "Every square matrix satisfies its own characteristic equation." },
+            { question: "When is a matrix diagonalizable?", answer: "When it has a complete set of linearly independent eigenvectors." },
+            { question: "Define the rank of a matrix.", answer: "The maximum number of linearly independent row or column vectors." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 },
+            { year: 2023, type: "End-Semester", duration: "3 Hours", questions: 8 },
+            { year: 2024, type: "Mid-Semester", duration: "1.5 Hours", questions: 4 }
+          ]
+        },
+        { 
+          id: 'cprog', 
+          name: 'Programming in C', 
+          code: 'IT102', 
+          description: 'Fundamentals of programming, logic building, and basic data structures.',
+          modules: [
+            { title: "Module 1: C Programming Basics", topics: ["Variables & constants", "Data types", "Operators", "Input/Output operations"] },
+            { title: "Module 2: Flow Control", topics: ["If-Else statements", "Switch Case", "For, While, and Do-While loops", "Break & Continue"] },
+            { title: "Module 3: Functions and Arrays", topics: ["Function parameters", "Recursion", "1D and 2D Arrays", "String manipulations"] },
+            { title: "Module 4: Pointers and Memory", topics: ["Pointer arithmetic", "Dynamic Memory Allocation (malloc, calloc, free)", "Pass-by-value vs reference"] },
+            { title: "Module 5: Structures and Files", topics: ["Structures and Unions", "Typedef", "File Open/Read/Write operations", "Standard IO library"] }
+          ],
+          notes: [
+            { title: "Understanding Pointers", content: "A pointer stores the memory address of another variable. Syntax: `int *ptr = &val;` to declare. Dereferencing (`*ptr`) retrieves the value stored at that address." },
+            { title: "Dynamic Memory Allocation", content: "`malloc(size)` allocates raw uninitialized memory. `calloc(n, size)` allocates memory and initializes all bits to zero. Always call `free()` to avoid memory leaks." }
+          ],
+          flashcards: [
+            { question: "What is the difference between malloc() and calloc()?", answer: "malloc allocates uninitialized memory; calloc initializes all allocated bytes to zero." },
+            { question: "What is a 'null pointer' in C?", answer: "A pointer that points to nothing, typically pointing to address 0 or NULL to prevent illegal access." },
+            { question: "What is a structural union?", answer: "A structure allocates individual memory for each member; a union shares the same memory space among all members." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 6 },
+            { year: 2023, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'phy', 
+          name: 'Engineering Physics', 
+          code: 'IT103', 
+          description: 'Semiconductors, optics, and quantum mechanics basics.',
+          modules: [
+            { title: "Module 1: Quantum Physics", topics: ["Planck's theory", "De Broglie hypothesis", "Heisenberg Uncertainty Principle", "Schrodinger wave equation"] },
+            { title: "Module 2: Semiconductor Physics", topics: ["Fermi-Dirac distribution", "Carrier transport", "Hall Effect", "P-N junctions"] },
+            { title: "Module 3: Wave Optics", topics: ["Interference", "Diffraction", "Polarization of light", "Michelson Interferometer"] },
+            { title: "Module 4: Lasers and Fiber Optics", topics: ["Einstein coefficients", "Stimulated emission", "Fiber optic cable modes", "Numerical aperture"] },
+            { title: "Module 5: Advanced Materials", topics: ["Superconductivity", "Meissner Effect", "Nanomaterials", "Carbon nanotubes"] }
+          ],
+          notes: [
+            { title: "Quantum Physics Introduction", content: "Heisenberg's uncertainty principle states Δx · Δp ≥ ℏ/2. You cannot simultaneously measure the exact position and momentum of a particle." }
+          ],
+          flashcards: [
+            { question: "What is the Meissner Effect?", answer: "The complete expulsion of magnetic fields from a superconductor as it transitions into the superconducting state." },
+            { question: "Define Numerical Aperture.", answer: "A measure of a fiber optic cable's light-gathering ability, calculated as sin(Acceptance Angle)." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'ee', 
+          name: 'Basic Electrical Engineering', 
+          code: 'IT104', 
+          description: 'Circuit analysis, transformers, and AC fundamentals.',
+          modules: [
+            { title: "Module 1: DC Circuits", topics: ["Kirchhoff's Laws", "Mesh & Nodal analysis", "Thevenin's & Norton's Theorem", "Superposition"] },
+            { title: "Module 2: AC Fundamentals", topics: ["RMS & Average values", "Form Factor", "Phasor representations", "RLC series circuits"] },
+            { title: "Module 3: Transformers", topics: ["EMF equation", "Equivalent circuits", "Core/Copper losses", "Open & Short circuit tests"] },
+            { title: "Module 4: Electrical Machines", topics: ["DC Generators & Motors", "Three-phase Induction Motors", "Torque-slip characteristics"] },
+            { title: "Module 5: Electrical Systems", topics: ["Single-phase & Three-phase power", "Tariff structures", "Fuses & Circuit Breakers"] }
+          ],
+          notes: [
+            { title: "Thevenin's Theorem", content: "Any linear two-terminal DC network can be replaced by an equivalent circuit consisting of an equivalent voltage source (Vth) in series with an equivalent resistance (Rth)." }
+          ],
+          flashcards: [
+            { question: "What is Kirchhoff's Current Law (KCL)?", answer: "The algebraic sum of currents entering a node is equal to the sum of currents leaving the node (conservation of charge)." },
+            { question: "What are the two types of losses in a transformer?", answer: "Iron (core) losses (constant) and copper (I²R) losses (variable with load)." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 6 }
+          ]
+        }
+      ],
+      2: [
+        { 
+          id: 'dsa', 
+          name: 'Data Structures & Algorithms', 
+          code: 'IT201', 
+          description: 'Arrays, trees, graphs, and algorithmic complexity.',
+          modules: [
+            { title: "Module 1: Introduction & Linear Arrays", topics: ["Asymptotic notation (Big-O)", "Stack & Queue operations", "Linked Lists (Singly, Doubly, Circular)", "Array memory representation"] },
+            { title: "Module 2: Trees", topics: ["Binary Trees", "Binary Search Trees (BST)", "AVL Trees (Rotations)", "Tree Traversals (Inorder, Preorder, Postorder)"] },
+            { title: "Module 3: Graphs", topics: ["Adjacency Matrix & List representation", "Breadth-First Search (BFS)", "Depth-First Search (DFS)", "Dijkstra's Shortest Path"] },
+            { title: "Module 4: Searching & Sorting", topics: ["Binary Search", "Quick Sort", "Merge Sort", "Heap Sort", "Hashing collisions"] },
+            { title: "Module 5: Advanced Algorithms", topics: ["Dynamic Programming basics", "Greedy algorithms", "Minimum Spanning Tree (Kruskal/Prim)"] }
+          ],
+          notes: [
+            { title: "BST Traversals", content: "Inorder traversal of a Binary Search Tree always yields sorted elements in ascending order. Time complexity is O(N) where N is the number of nodes." },
+            { title: "AVL Tree Balancing", content: "AVL trees are self-balancing BSTs where the height difference (Balance Factor = H_left - H_right) is strictly restricted to -1, 0, or +1. Balance is restored using Single (L, R) or Double (LR, RL) rotations." }
+          ],
+          flashcards: [
+            { question: "What is the worst-case time complexity of Quick Sort?", answer: "O(n^2), occurring when the selected pivot is consistently the smallest or largest element." },
+            { question: "Name the data structure used in Breadth-First Search (BFS).", answer: "A Queue (First-In, First-Out)." },
+            { question: "What is a hash collision?", answer: "When two different keys map to the exact same hash index. Handled via chaining or open addressing." }
+          ],
+          pyqs: [
+            { year: 2025, type: "End-Semester", duration: "3 Hours", questions: 8 },
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'oop', 
+          name: 'Object Oriented Programming (C++/Java)', 
+          code: 'IT202', 
+          description: 'Classes, inheritance, polymorphism, and design patterns.',
+          modules: [
+            { title: "Module 1: OOP Principles", topics: ["Classes & Objects", "Encapsulation", "Data Abstraction", "Message Passing"] },
+            { title: "Module 2: Constructors and Destructors", topics: ["Constructors", "Destructors", "Memory allocation (`new`, `delete`)"] },
+            { title: "Module 3: Inheritance", topics: ["Access Specifiers (Public, Private, Protected)", "Virtual base classes"] },
+            { title: "Module 4: Polymorphism", topics: ["Compile-time (Overloading)", "Run-time (Virtual functions)", "Abstract classes", "Pure virtual functions"] },
+            { title: "Module 5: Templates & Exceptions", topics: ["Class & function templates", "Try-catch blocks", "Throwing exceptions", "File stream handling"] }
+          ],
+          notes: [
+            { title: "Polymorphism Mechanics", content: "Run-time polymorphism is achieved using virtual functions. When a base class pointer points to a derived class object, calling a virtual function executes the derived class version instead." }
+          ],
+          flashcards: [
+            { question: "What is a pure virtual function?", answer: "A virtual function assigned to 0 in C++ (e.g. `virtual void func() = 0;`), making its class abstract and uninstantiable." },
+            { question: "Define Encapsulation.", answer: "The wrapping up of data (attributes) and member functions into a single unit (class) to prevent external tampering." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'dbms', 
+          name: 'Database Management Systems', 
+          code: 'IT203', 
+          description: 'SQL, normalization, transaction processing, and concurrency.',
+          modules: [
+            { title: "Module 1: Introduction & ER Diagram", topics: ["Database architecture", "ER modeling (Entities, Relationships, Keys)", "Relational algebra"] },
+            { title: "Module 2: Structured Query Language (SQL)", topics: ["DDL, DML, DCL commands", "Joins (Inner, Left, Right, Outer)", "Subqueries & Group By"] },
+            { title: "Module 3: Normalization", topics: ["1NF, 2NF, 3NF, BCNF rules", "Functional dependencies", "Lossless decomposition"] },
+            { title: "Module 4: Transaction & Concurrency", topics: ["ACID Properties", "Schedule serializability", "Two-Phase Locking (2PL)", "Deadlocks in DBMS"] },
+            { title: "Module 5: File Org & Indexing", topics: ["B-Trees and B+ Trees", "Dense & Sparse indices", "Hashing in databases"] }
+          ],
+          notes: [
+            { title: "ACID Properties Demystified", content: "A: Atomicity (All or nothing), C: Consistency (Valid states), I: Isolation (Concurrently invisible), D: Durability (Persistent commits)." },
+            { title: "Normalization Quick Rules", content: "1NF: Atomic values. 2NF: 1NF + No partial dependencies. 3NF: 2NF + No transitive dependencies. BCNF: For X -> Y, X must be a super key." }
+          ],
+          flashcards: [
+            { question: "What is a primary key?", answer: "A unique, non-null identifier for a record in a relational database table." },
+            { question: "Explain the purpose of B+ Trees in indexing.", answer: "They maintain sorted data with highly efficient disk access, storing data records only in leaf nodes for fast range scans." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 8 }
+          ]
+        },
+        { 
+          id: 'os', 
+          name: 'Operating Systems', 
+          code: 'IT204', 
+          description: 'Process management, memory management, and file systems.',
+          modules: [
+            { title: "Module 1: Process Management", topics: ["Process states", "PCB", "CPU Scheduling (FCFS, SJF, Round Robin)", "Context switching"] },
+            { title: "Module 2: Process Synchronization", topics: ["Critical section problem", "Semaphores", "Mutexes", "Producer-Consumer problem"] },
+            { title: "Module 3: Deadlocks", topics: ["Banker's Algorithm", "Deadlock detection & recovery", "Resource allocation graph"] },
+            { title: "Module 4: Memory Management", topics: ["Paging", "Segmentation", "Virtual Memory", "Page replacement (FIFO, LRU, Optimal)"] },
+            { title: "Module 5: Storage & File Systems", topics: ["Disk scheduling (FCFS, SSTF, SCAN)", "Directory structure", "File allocation schemes"] }
+          ],
+          notes: [
+            { title: "CPU Scheduling Principles", content: "Round Robin provides fair sharing via time quantums. Shortest Job First (SJF) gives optimal average waiting times but can lead to starvation for long processes." }
+          ],
+          flashcards: [
+            { question: "What is 'thrashing' in virtual memory?", answer: "A state where the CPU spends more time swapping pages in and out of memory than executing actual instructions." },
+            { question: "What are the four necessary conditions for deadlock?", answer: "Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        }
+      ],
+      3: [
+        { 
+          id: 'cn', 
+          name: 'Computer Networks', 
+          code: 'IT301', 
+          description: 'OSI model, TCP/IP, routing protocols, and network security.',
+          modules: [
+            { title: "Module 1: Reference Models", topics: ["OSI 7-Layer model", "TCP/IP suite", "Transmission media", "Physical layer line coding"] },
+            { title: "Module 2: Data Link Layer", topics: ["Framing", "Error control (CRC)", "Sliding Window protocols (Go-Back-N, Selective Repeat)", "CSMA/CD & CSMA/CA"] },
+            { title: "Module 3: Network Layer", topics: ["IPv4 & IPv6 addressing", "Subnetting", "Routing protocols (OSPF, RIP, BGP)", "NAT & ICMP"] },
+            { title: "Module 4: Transport Layer", topics: ["TCP vs UDP", "Three-way handshake", "TCP congestion control (Slow start, Congestion avoidance)", "Port mapping"] },
+            { title: "Module 5: Application Layer", topics: ["DNS", "HTTP & HTTPS", "SMTP/POP3", "Socket programming basics"] }
+          ],
+          notes: [
+            { title: "Subnetting Tricks", content: "To calculate subnets, use the formula 2^n >= needed subnets. The host capacity per subnet is 2^h - 2 (subtracting network and broadcast addresses)." }
+          ],
+          flashcards: [
+            { question: "What is the difference between TCP and UDP?", answer: "TCP is connection-oriented, reliable, and slower; UDP is connectionless, unreliable, but faster (streaming)." },
+            { question: "Define Address Resolution Protocol (ARP).", answer: "A protocol used to map an IP address (network layer) to its physical MAC address (data link layer)." }
+          ],
+          pyqs: [
+            { year: 2025, type: "End-Semester", duration: "3 Hours", questions: 8 }
+          ]
+        },
+        { 
+          id: 'se', 
+          name: 'Software Engineering', 
+          code: 'IT302', 
+          description: 'SDLC, agile methodologies, and project management.',
+          modules: [
+            { title: "Module 1: Software Development Life Cycle (SDLC)", topics: ["Waterfall", "Spiral model", "Prototype model", "V-Model"] },
+            { title: "Module 2: Agile Methodology", topics: ["Scrum framework", "User stories", "Sprints", "Burndown charts"] },
+            { title: "Module 3: Requirements Engineering", topics: ["SRS Document components", "Functional vs Non-functional requirements", "Feasibility studies"] },
+            { title: "Module 4: Design and UML", topics: ["Use Case Diagrams", "Class Diagrams", "Sequence Diagrams", "Cohesion and Coupling metrics"] },
+            { title: "Module 5: Testing and Maintenance", topics: ["Unit, Integration, System testing", "Black-box vs White-box testing", "Regression testing"] }
+          ],
+          notes: [
+            { title: "Cohesion vs Coupling", content: "High Cohesion (elements inside a module are closely related) and Low Coupling (modules are independent) represent the hallmark of good architectural design." }
+          ],
+          flashcards: [
+            { question: "What is the primary objective of the Spiral Model?", answer: "To systematically identify and mitigate risks in large-scale software engineering projects." },
+            { question: "Explain the difference between Black-box and White-box testing.", answer: "Black-box tests functional behavior without looking at internal code; White-box tests internal logic, paths, and loops." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 6 }
+          ]
+        },
+        { 
+          id: 'web', 
+          name: 'Web Technologies', 
+          code: 'IT303', 
+          description: 'HTML, CSS, JavaScript, React, and Node.js.',
+          modules: [
+            { title: "Module 1: Front-end Basics", topics: ["HTML5 semantic structures", "CSS3 Flexbox and Grid layout", "Responsive web design (media queries)", "CSS variables"] },
+            { title: "Module 2: JavaScript ES6+", topics: ["Variables (let, const)", "Arrow functions", "Promises & Async/Await", "DOM Manipulation"] },
+            { title: "Module 3: React Framework", topics: ["Functional components", "JSX", "Hooks (useState, useEffect, useRef)", "State management"] },
+            { title: "Module 4: Backend Integration", topics: ["Node.js event loop", "Express framework routing", "REST API development", "CORS"] },
+            { title: "Module 5: Databases & Deployment", topics: ["NoSQL (MongoDB) connections", "Mongoose schemas", "JWT authentication", "Cloud hosting"] }
+          ],
+          notes: [
+            { title: "Async/Await Mechanics", content: "Async functions return promises. The `await` keyword pauses execution until the promise resolves, yielding clean, synchronous-looking asynchronous code." }
+          ],
+          flashcards: [
+            { question: "What is the Virtual DOM in React?", answer: "An in-memory representation of the real DOM that React diffs to perform fast, batched updates to the UI." },
+            { question: "Explain JSON Web Token (JWT) structure.", answer: "Consists of three parts separated by dots: Header, Payload, and Signature." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'ai', 
+          name: 'Artificial Intelligence', 
+          code: 'IT304', 
+          description: 'Search algorithms, machine learning basics, and neural networks.',
+          modules: [
+            { title: "Module 1: Introduction & State Space Search", topics: ["Uninformed Search (BFS, DFS)", "Informed Search (A* Search, Greedy Best First)", "Adversarial Search (Minimax, Alpha-Beta Pruning)"] },
+            { title: "Module 2: Knowledge Representation", topics: ["Propositional Logic", "First-Order Predicate Logic", "Semantic Networks", "Rule-based expert systems"] },
+            { title: "Module 3: Machine Learning Foundations", topics: ["Supervised vs Unsupervised learning", "Linear Regression", "Decision Trees", "K-Means Clustering"] },
+            { title: "Module 4: Artificial Neural Networks", topics: ["Perceptron model", "Activation Functions (ReLU, Sigmoid)", "Backpropagation algorithm"] },
+            { title: "Module 5: NLP & Robotics", topics: ["Tokenization & Lemmatization", "TF-IDF Vectorization", "Kinematics in robotics"] }
+          ],
+          notes: [
+            { title: "A* Search Conditions", content: "A* search guarantees optimality if the heuristic h(n) is admissible (never overestimates the cost to reach the goal) and consistent." }
+          ],
+          flashcards: [
+            { question: "What is Alpha-Beta Pruning?", answer: "An optimization technique for the minimax algorithm that cuts off branches that cannot possibly affect the final decision." },
+            { question: "Define Backpropagation.", answer: "The algorithm that calculates parameter gradients in a neural network by passing errors backward from outputs to inputs." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 6 }
+          ]
+        }
+      ],
+      4: [
+        { 
+          id: 'cc', 
+          name: 'Cloud Computing', 
+          code: 'IT401', 
+          description: 'AWS, Azure, virtualization, and distributed systems.',
+          modules: [
+            { title: "Module 1: Cloud Basics", topics: ["NIST Definition", "Cloud service models (IaaS, PaaS, SaaS)", "Deployment models (Public, Private, Hybrid)"] },
+            { title: "Module 2: Virtualization", topics: ["Hypervisors (Type 1 & Type 2)", "OS-level virtualization (Docker containers)", "VM migration mechanisms"] },
+            { title: "Module 3: AWS Architecture", topics: ["EC2 instances", "S3 Storage buckets", "VPC structures", "IAM Roles & Security Groups"] },
+            { title: "Module 4: Distributed Computing", topics: ["MapReduce programming model", "Virtual machine autoscaling", "Load balancing algorithms"] },
+            { title: "Module 5: Cloud Security & Serverless", topics: ["Shared responsibility model", "FaaS (AWS Lambda)", "Cloud migration strategies"] }
+          ],
+          notes: [
+            { title: "Cloud Service Breakdown", content: "IaaS gives you basic infrastructure (VMs, storage); PaaS gives you runtime environments (Heroku, AWS Elastic Beanstalk); SaaS gives fully managed applications (Google Workspace)." }
+          ],
+          flashcards: [
+            { question: "Difference between Type 1 and Type 2 Hypervisors?", answer: "Type 1 runs bare-metal directly on the host hardware; Type 2 runs on top of an existing host operating system." },
+            { question: "What is a Serverless architecture?", answer: "An execution model where the cloud provider dynamically manages machine resources (e.g. AWS Lambda), charging only for execution time." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'cns', 
+          name: 'Cryptography & Network Security', 
+          code: 'IT402', 
+          description: 'Encryption, digital signatures, and security protocols.',
+          modules: [
+            { title: "Module 1: Classical Cryptography", topics: ["Substitution & Transposition ciphers", "Symmetric key cryptography principles", "Feistel cipher structure"] },
+            { title: "Module 2: Modern Symmetric Ciphers", topics: ["Data Encryption Standard (DES)", "Advanced Encryption Standard (AES)", "Block cipher modes (ECB, CBC)"] },
+            { title: "Module 3: Asymmetric Cryptography", topics: ["Diffie-Hellman Key Exchange", "RSA Algorithm math", "Elliptic Curve Cryptography"] },
+            { title: "Module 4: Data Integrity", topics: ["Cryptographic Hash Functions (SHA-256)", "Message Authentication Codes (MAC)", "Digital Signatures"] },
+            { title: "Module 5: Network Security Protocols", topics: ["IPsec architecture", "SSL/TLS handshake", "Firewall filtering", "Intrusion Detection Systems"] }
+          ],
+          notes: [
+            { title: "RSA Cryptosystem Mathematics", content: "Choose two prime numbers p, q. n = p*q. Compute φ(n) = (p-1)*(q-1). Public key e must satisfy gcd(e, φ(n)) = 1. Private key d is the modular multiplicative inverse of e mod φ(n)." }
+          ],
+          flashcards: [
+            { question: "Explain the main vulnerability of Electronic Codebook (ECB) mode.", answer: "Identical plaintext blocks encrypt into identical ciphertext blocks, leaking structural patterns in data." },
+            { question: "What security properties do digital signatures guarantee?", answer: "Authentication, Non-repudiation, and Integrity." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 8 }
+          ]
+        },
+        { 
+          id: 'bd', 
+          name: 'Big Data Analytics', 
+          code: 'IT403', 
+          description: 'Hadoop, Spark, and data visualization.',
+          modules: [
+            { title: "Module 1: Big Data Characteristics", topics: ["The 5 Vs (Volume, Velocity, Variety, Veracity, Value)", "Distributed processing concepts", "Structured vs unstructured data"] },
+            { title: "Module 2: Hadoop Ecosystem", topics: ["Hadoop Distributed File System (HDFS)", "NameNode & DataNode architecture", "MapReduce programming model"] },
+            { title: "Module 3: Apache Spark", topics: ["Resilient Distributed Datasets (RDDs)", "Spark SQL & Dataframes", "Lazy evaluation mechanisms"] },
+            { title: "Module 4: NoSQL Databases", topics: ["Key-Value stores", "Document databases (MongoDB)", "Columnar storage (Cassandra)", "CAP Theorem"] },
+            { title: "Module 5: Analytics and Viz", topics: ["Data mining workflows", "Spark Streaming", "BI tools & data visualization dashboards"] }
+          ],
+          notes: [
+            { title: "HDFS Architecture Principles", content: "HDFS uses a master-slave design. The NameNode acts as master, managing metadata and cluster operations, while DataNodes store file block replicas." }
+          ],
+          flashcards: [
+            { question: "What is the CAP Theorem?", answer: "A distributed system can satisfy only two out of three: Consistency, Availability, and Partition Tolerance." },
+            { question: "What is Resilient Distributed Dataset (RDD)?", answer: "Spark's primary data abstraction: a read-only, partitioned, fault-tolerant collection of records." }
+          ],
+          pyqs: [
+            { year: 2024, type: "End-Semester", duration: "3 Hours", questions: 7 }
+          ]
+        },
+        { 
+          id: 'ml', 
+          name: 'Machine Learning', 
+          code: 'IT404', 
+          description: 'Supervised, unsupervised learning, and deep learning models.',
+          modules: [
+            { title: "Module 1: Supervised Learning", topics: ["Linear and Logistic Regression", "Support Vector Machines (SVM)", "Decision Trees", "Bias-Variance Trade-off"] },
+            { title: "Module 2: Ensemble Methods", topics: ["Random Forest", "Gradient Boosting (XGBoost)", "AdaBoost", "Bagging vs Boosting"] },
+            { title: "Module 3: Unsupervised Learning", topics: ["K-Means clustering", "Hierarchical clustering", "Principal Component Analysis (PCA)", "Dimensionality reduction"] },
+            { title: "Module 4: Deep Learning Foundations", topics: ["Multi-layer Perceptrons", "Activation functions", "Loss functions & Optimizers (Adam, SGD)"] },
+            { title: "Module 5: Model Evaluation", topics: ["Confusion Matrix", "Precision, Recall, & F1 Score", "ROC & AUC curves", "Cross-Validation"] }
+          ],
+          notes: [
+            { title: "Bias vs Variance", content: "High bias corresponds to underfitting (too simplistic model). High variance corresponds to overfitting (model learns training noise). Aim to minimize both." }
+          ],
+          flashcards: [
+            { question: "Explain the difference between Bagging and Boosting.", answer: "Bagging trains parallel independent models (e.g. Random Forest) to reduce variance; Boosting trains sequential dependent models to reduce bias." },
+            { question: "What is the purpose of PCA?", answer: "Principal Component Analysis is a dimensionality reduction technique that maps data to orthogonal directions of maximum variance." }
+          ],
+          pyqs: [
+            { year: 2025, type: "End-Semester", duration: "3 Hours", questions: 8 }
+          ]
+        }
+      ]
+    };
+
+    // Helper functions
+    function getSubjectById(id) {
+      for (const year of Object.values(SYLLABUS_DATA)) {
+        const found = year.find(s => s.id === id);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    // Toggle Themes
+    function toggleTheme() {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', state.theme);
+      localStorage.setItem('theme', state.theme);
+      renderThemeIcon();
+    }
+
+    function renderThemeIcon() {
+      const btn = document.getElementById('theme-toggle-btn');
+      if (state.theme === 'dark') {
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>`;
+      } else {
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>`;
+      }
+    }
+
+    // Toggle Settings Dialog
+    function toggleSettings(open) {
+      state.isSettingsOpen = open;
+      const overlay = document.getElementById('settings-modal-overlay');
+      const input = document.getElementById('settings-api-input');
+      
+      if (open) {
+        input.value = state.apiKey;
+        overlay.classList.add('active');
+      } else {
+        overlay.classList.remove('active');
+      }
+    }
+
+    function saveApiKey() {
+      const input = document.getElementById('settings-api-input');
+      state.apiKey = input.value.trim();
+      
+      if (state.apiKey) {
+        localStorage.setItem('gemini_api_key', state.apiKey);
+        showToast("Gemini API Key saved securely inside local browser state!");
+      } else {
+        localStorage.removeItem('gemini_api_key');
+        showToast("Gemini API Key removed. Reverting to offline tutor simulator.");
+      }
+      toggleSettings(false);
+    }
+
+    // Show Custom Toast Alerts
+    function showToast(message) {
+      const toast = document.getElementById('toast-notif');
+      toast.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#27c160" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 11.01-3-3"/></svg>
+        <span>${message}</span>
+      `;
+      toast.classList.add('active');
+      
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3500);
+    }
+
+    // Change Academic Years
+    function changeYear(year) {
+      state.activeYear = year;
+      
+      // Update year buttons styling
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`year-btn-${i}`);
+        if (i === year) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      }
+
+      // Update titles
+      const headings = {
+        1: "Year I Courses & Syllabus",
+        2: "Year II Courses & Syllabus",
+        3: "Year III Courses & Syllabus",
+        4: "Year IV Courses & Syllabus"
+      };
+      document.getElementById('subjects-heading').innerText = headings[year];
+      
+      renderSubjects();
+    }
+
+    // Search input handler
+    function handleSearch(val) {
+      state.searchQuery = val;
+      const yearTabs = document.getElementById('year-tabs-container');
+      const heading = document.getElementById('subjects-heading');
+      
+      if (val.trim()) {
+        yearTabs.style.display = 'none';
+        heading.innerText = `Search Results for "${val.trim()}"`;
+      } else {
+        yearTabs.style.display = 'grid';
+        changeYear(state.activeYear);
+      }
+      
+      renderSubjects();
+    }
+
+    // Filter Subjects based on state
+    function getFilteredSubjects() {
+      const query = state.searchQuery.trim().toLowerCase();
+      let list = [];
+      
+      if (query) {
+        Object.values(SYLLABUS_DATA).forEach(y => {
+          list.push(...y);
+        });
+      } else {
+        list = SYLLABUS_DATA[state.activeYear] || [];
+      }
+
+      if (!query) return list;
+
+      return list.filter(sub => 
+        sub.name.toLowerCase().includes(query) ||
+        sub.code.toLowerCase().includes(query) ||
+        sub.description.toLowerCase().includes(query) ||
+        sub.modules.some(m => 
+          m.title.toLowerCase().includes(query) ||
+          m.topics.some(t => t.toLowerCase().includes(query))
+        )
+      );
+    }
+
+    // Render grid of subject cards
+    function renderSubjects() {
+      const grid = document.getElementById('subjects-grid');
+      const counter = document.getElementById('subjects-counter');
+      const subjects = getFilteredSubjects();
+      
+      counter.innerText = `${subjects.length} courses loaded`;
+
+      if (subjects.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: span 2; text-align: center; padding: 60px 0; border: 1px dashed var(--border-color); border-radius: 24px;">
+            <p class="text-secondary">No subjects match your current search query. Try typing another concept like "normalization", "cns", or "TCP".</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = subjects.map(sub => `
+        <div class="subject-card" onclick="openSubjectDrawer('${sub.id}')">
+          <div>
+            <div class="subject-header">
+              <span class="subject-code">${sub.code}</span>
+              <svg class="text-secondary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+            <h3 class="subject-name">${sub.name}</h3>
+            <p class="subject-desc">${sub.description}</p>
+          </div>
+
+          <div class="subject-footer">
+            <span>${sub.modules ? sub.modules.length : 0} Modules</span>
+            <span class="subject-action-link">
+              Study Hub <svg style="width: 14px; height: 14px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open slide-over Subject Workspace Drawer
+    function openSubjectDrawer(id) {
+      const subject = getSubjectById(id);
+      if (!subject) return;
+
+      state.selectedSubject = subject;
+      state.activeDrawerTab = 'syllabus';
+      state.currentFlashcardIndex = 0;
+      state.isFlashcardFlipped = false;
+
+      // Populate header
+      const header = document.getElementById('drawer-header');
+      header.innerHTML = `
+        <div>
+          <span class="subject-code">${subject.code}</span>
+          <h2 class="subject-name" style="margin-top: 8px;">${subject.name}</h2>
+          <p class="subject-desc" style="margin-top: 4px; margin-bottom: 0;">${subject.description}</p>
+        </div>
+        <button class="drawer-close" onclick="closeSubjectDrawer()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+        </button>
+      `;
+
+      // Update AI Tutor subtitle
+      document.getElementById('ai-tutor-subtitle').innerText = `Discussing: ${subject.code}`;
+
+      // Open overlay
+      document.getElementById('drawer-overlay').classList.add('active');
+      
+      switchDrawerTab('syllabus');
+    }
+
+    function closeSubjectDrawer() {
+      document.getElementById('drawer-overlay').classList.remove('active');
+      state.selectedSubject = null;
+      document.getElementById('ai-tutor-subtitle').innerText = 'Active & Ready';
+    }
+
+    // Switch between detail tabs inside drawer
+    function switchDrawerTab(tab) {
+      state.activeDrawerTab = tab;
+      
+      // Update tab buttons
+      const tabs = ['syllabus', 'pyq', 'notes', 'flashcard'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tab) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      renderDrawerBody();
+    }
+
+    // Populate drawer dynamic content body
+    function renderDrawerBody() {
+      const body = document.getElementById('drawer-body');
+      const subject = state.selectedSubject;
+      if (!subject) return;
+
+      if (state.activeDrawerTab === 'syllabus') {
+        body.innerHTML = `
+          <div style="animation: fadeIn 0.3s ease;">
+            ${subject.modules.map(mod => `
+              <div class="module-item">
+                <h3 class="module-title">${mod.title}</h3>
+                <div style="margin-top: 8px;">
+                  ${mod.topics.map(topic => `<span class="module-topic-tag">${topic}</span>`).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } 
+      
+      else if (state.activeDrawerTab === 'pyq') {
+        body.innerHTML = `
+          <div class="pyq-list">
+            ${subject.pyqs.map(pyq => {
+              const pyqId = `${subject.id}_${pyq.year}_${pyq.type.replace(/\s+/g, '_')}`;
+              const status = state.downloadStates[pyqId] || '';
+              const progress = state.downloadStates[`${pyqId}_progress`] || 0;
+
+              let btnContent = '';
+              if (status === 'downloading') {
+                btnContent = `
+                  <span>Downloading ${progress}%</span>
+                  <div class="download-progress-bar" style="width: ${progress}%; display:block;"></div>
+                `;
+              } else if (status === 'success') {
+                btnContent = `<span>✓ Saved</span>`;
+              } else {
+                btnContent = `
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+                  <span>Get PDF</span>
+                `;
+              }
+
+              return `
+                <div class="pyq-item">
+                  <div class="pyq-info">
+                    <div class="pyq-icon-box">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
+                    </div>
+                    <div>
+                      <h4 class="pyq-name">${pyq.year} - ${pyq.type} Exam</h4>
+                      <p class="pyq-meta">
+                        <span>Duration: ${pyq.duration}</span>
+                        <span>•</span>
+                        <span>Format: PDF Document</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <button 
+                    id="dl-btn-${pyqId}"
+                    class="download-btn ${status === 'downloading' ? 'downloading' : ''} ${status === 'success' ? 'success' : ''}"
+                    onclick="triggerDownload('${pyqId}', ${pyq.year}, '${pyq.type}')"
+                    ${status === 'downloading' ? 'disabled' : ''}
+                  >
+                    ${btnContent}
+                  </button>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      } 
+      
+      else if (state.activeDrawerTab === 'notes') {
+        body.innerHTML = `
+          <div class="notes-list">
+            ${subject.notes.map(note => `
+              <div class="notes-block">
+                <h4 class="notes-title">${note.title}</h4>
+                <div class="notes-body">
+                  <p>${note.content}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } 
+      
+      else if (state.activeDrawerTab === 'flashcard') {
+        renderFlashcardsSection();
+      }
+    }
+
+    // Trigger high-fidelity download simulations
+    function triggerDownload(pyqId, year, type) {
+      if (state.downloadStates[pyqId] === 'downloading' || state.downloadStates[pyqId] === 'success') return;
+
+      state.downloadStates[pyqId] = 'downloading';
+      state.downloadStates[`${pyqId}_progress`] = 0;
+      
+      renderDrawerBody();
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        state.downloadStates[`${pyqId}_progress`] = progress;
+        
+        const btn = document.getElementById(`dl-btn-${pyqId}`);
+        if (btn) {
+          btn.innerHTML = `
+            <span>Downloading ${progress}%</span>
+            <div class="download-progress-bar" style="width: ${progress}%; display:block;"></div>
+          `;
+        }
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          state.downloadStates[pyqId] = 'success';
+          
+          if (btn) {
+            btn.className = "download-btn success";
+            btn.innerHTML = `<span>✓ Saved</span>`;
+            btn.disabled = true;
+          }
+          
+          showToast(`Downloaded: ${state.selectedSubject.code}_${year}_${type.replace(/\s+/g, '')}.pdf Successfully!`);
+        }
+      }, 100);
+    }
+
+    // Render Flashcard flips
+    function renderFlashcardsSection() {
+      const body = document.getElementById('drawer-body');
+      const subject = state.selectedSubject;
+      if (!subject || !subject.flashcards) return;
+
+      const card = subject.flashcards[state.currentFlashcardIndex];
+      body.innerHTML = `
+        <div class="flashcard-wrapper">
+          <p class="text-secondary" style="font-size: 0.8rem; text-align: center;">
+            Click the card to flip it and view the answer!
+          </p>
+          
+          <div class="flashcard-box" onclick="toggleFlashcardFlip()">
+            <div class="flashcard-inner ${state.isFlashcardFlipped ? 'flipped' : ''}" id="flashcard-inner">
+              <div class="flashcard-face flashcard-front">
+                <span class="card-label">Question</span>
+                <p class="card-text">${card.question}</p>
+              </div>
+              <div class="flashcard-face flashcard-back">
+                <span class="card-label" style="color: var(--text-primary);">Correct Answer</span>
+                <p class="card-text">${card.answer}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard-controls">
+            <button class="btn-icon" onclick="navigateFlashcard(-1)" style="width: 44px; height: 44px;">
+              <span style="transform: rotate(180deg); display: inline-block;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+              </span>
+            </button>
+            <span class="flashcard-num-indicator">
+              ${state.currentFlashcardIndex + 1} / ${subject.flashcards.length}
+            </span>
+            <button class="btn-icon" onclick="navigateFlashcard(1)" style="width: 44px; height: 44px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleFlashcardFlip() {
+      state.isFlashcardFlipped = !state.isFlashcardFlipped;
+      const el = document.getElementById('flashcard-inner');
+      if (el) el.classList.toggle('flipped');
+    }
+
+    function navigateFlashcard(dir) {
+      state.isFlashcardFlipped = false;
+      const count = state.selectedSubject.flashcards.length;
+      
+      const el = document.getElementById('flashcard-inner');
+      if (el) el.classList.remove('flipped');
+
+      setTimeout(() => {
+        state.currentFlashcardIndex = (state.currentFlashcardIndex + dir + count) % count;
+        renderFlashcardsSection();
+      }, 150);
+    }
+
+    // Toggle Floating AI Chat Panel
+    function toggleAIChat(open) {
+      if (open === undefined) {
+        state.isAIChatOpen = !state.isAIChatOpen;
+      } else {
+        state.isAIChatOpen = open;
+      }
+      
+      const panel = document.getElementById('ai-chat-panel');
+      if (state.isAIChatOpen) {
+        panel.classList.add('active');
+        renderChatMessages();
+      } else {
+        panel.classList.remove('active');
+      }
+    }
+
+    // Appending dynamic messages inside AI Panel
+    function renderChatMessages() {
+      const container = document.getElementById('chat-messages');
+      container.innerHTML = state.chatMessages.map(msg => `
+        <div class="chat-msg ${msg.role}">
+          ${parseChatMessageText(msg.text)}
+        </div>
+      `).join('');
+      
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function parseChatMessageText(text) {
+      return text.split('\n').map(line => {
+        if (line.startsWith('###')) {
+          return `<h5 style="font-bold; font-size:0.85rem; margin-top:8px; margin-bottom:4px;">${line.replace('###', '')}</h5>`;
+        }
+        if (line.startsWith('**') || line.startsWith('- **')) {
+          return `<p style="font-weight:600; font-size:0.8rem; margin:4px 0;">${line.replace(/- \*\*/g, '• ').replace(/\*\*/g, '')}</p>`;
+        }
+        return `<p style="margin-bottom:6px; font-size:0.8rem; font-weight:300;">${line}</p>`;
+      }).join('');
+    }
+
+    // Simulated Offline AI Responses
+    function getSimulatedOfflineResponse(query) {
+      const lowerQ = query.toLowerCase();
+      const currentSubject = state.selectedSubject;
+      let context = currentSubject ? `regarding ${currentSubject.name} (${currentSubject.code})` : 'general computer science';
+      
+      if (lowerQ.includes('hello') || lowerQ.includes('hi ')) {
+        return `Hello! I am your offline IT Study Assistant. I am ready to help you with ${currentSubject ? currentSubject.name : 'any IT subjects'}. Please ask me specific conceptual questions!`;
+      }
+
+      if (lowerQ.includes('pyq') || lowerQ.includes('question')) {
+        return `You can find the official previous year question papers inside the subject's **PYQ Tab**! Click on any paper to simulate a high-speed secure download. Let me know if you need specific solutions to past questions!`;
+      }
+
+      if (lowerQ.includes('normal') || lowerQ.includes('dbms') || lowerQ.includes('bcnf')) {
+        return `### Normalization in DBMS
+**Normalization** is the process of organizing data in a database to reduce redundancy and dependency.
+1. **1NF**: Atomic values, no repeating groups.
+2. **2NF**: 1NF + no partial dependencies (every non-prime attribute depends on the primary key).
+3. **3NF**: 2NF + no transitive dependencies.
+4. **BCNF (Boyce-Codd)**: For any dependency $X \\rightarrow Y$, $X$ must be a super key.`;
+      }
+
+      if (lowerQ.includes('pointer') || lowerQ.includes('malloc') || lowerQ.includes('c program')) {
+        return `### C Language Pointers
+A **pointer** is a variable that stores the memory address of another variable.
+- Declare: \`int *ptr;\`
+- Assign: \`ptr = &var;\` (where \`&\` is the address-of operator)
+- Dereference: \`*ptr\` (accesses the value at the stored address)
+
+**Dynamic Allocation**:
+- \`malloc(size)\`: Allocates raw byte blocks.
+- \`calloc(n, size)\`: Allocates block and initializes elements to zero.
+- \`free(ptr)\`: Releases memory back to the heap.`;
+      }
+
+      if (lowerQ.includes('stack') || lowerQ.includes('queue') || lowerQ.includes('dsa') || lowerQ.includes('binary')) {
+        return `### Core Data Structures
+- **Stack**: LIFO (Last-In, First-Out). Fundamental operations: \`push()\` and \`pop()\`.
+- **Queue**: FIFO (First-In, First-Out). Fundamental operations: \`enqueue()\` and \`dequeue()\`.
+- **Binary Search Tree (BST)**: A binary tree where the left child is smaller than parent, and right child is larger. Inorder traversal yields sorted elements!`;
+      }
+
+      if (lowerQ.includes('tcp') || lowerQ.includes('udp') || lowerQ.includes('network') || lowerQ.includes('osi')) {
+        return `### Networking Protocols (TCP vs UDP)
+1. **TCP (Transmission Control Protocol)**:
+   - Connection-oriented (uses 3-way handshake: SYN, SYN-ACK, ACK).
+   - Highly reliable with flow and congestion control.
+2. **UDP (User Datagram Protocol)**:
+   - Connectionless and lightweight.
+   - Faster but does not guarantee delivery. Ideal for video streaming and gaming.`;
+      }
+
+      return `### Study Guidance
+You asked about "${query}" ${context}. 
+To explore this concept in depth:
+1. Double-check the **Quick Revision Notes** for key breakdowns.
+2. Flip the **Prep Cards (Flashcards)** in this section to test yourself.
+3. For live answers, paste your **Gemini API Key** in the settings panel (top right) to connect me to real-time generative responses!`;
+    }
+
+    // Handle Chat Submissions
+    async function handleSendChat(e) {
+      e.preventDefault();
+      
+      const input = document.getElementById('chat-text-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      
+      // User message
+      state.chatMessages.push({ role: 'user', text });
+      renderChatMessages();
+
+      // Show loader
+      const container = document.getElementById('chat-messages');
+      const loaderId = 'chat-loader-temp';
+      container.innerHTML += `
+        <div class="chat-msg model" id="${loaderId}" style="opacity: 0.6;">
+          <span style="font-size:0.75rem; color:#888;">Thinking...</span>
+        </div>
+      `;
+      container.scrollTop = container.scrollHeight;
+
+      if (!state.apiKey) {
+        // Run simulator
+        setTimeout(() => {
+          const loader = document.getElementById(loaderId);
+          if (loader) loader.remove();
+          
+          const reply = getSimulatedOfflineResponse(text);
+          state.chatMessages.push({ role: 'model', text: reply });
+          renderChatMessages();
+        }, 800);
+        return;
+      }
+
+      // Live Gemini call
+      try {
+        const chatHistory = state.chatMessages.map(msg => ({
+          role: msg.role === 'model' ? 'model' : 'user',
+          parts: [{ text: msg.text }]
+        }));
+
+        const payload = {
+          contents: chatHistory,
+          systemInstruction: {
+            parts: [{ text: `You are a highly intelligent and helpful tutor for Information Technology (IT) college students. Answer concisely and accurately. Explain technical concepts simply. You are integrated into a college notes website with an Apple-inspired black and white minimalist design. Current subject: ${state.selectedSubject ? state.selectedSubject.name + ' (' + state.selectedSubject.code + ')' : 'None selected'}.` }]
+          }
+        };
+
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.apiKey}`;
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        const loader = document.getElementById(loaderId);
+        if (loader) loader.remove();
+
+        if (result.candidates && result.candidates.length > 0) {
+          const aiText = result.candidates[0].content.parts[0].text;
+          state.chatMessages.push({ role: 'model', text: aiText });
+        } else if (result.error) {
+          state.chatMessages.push({ role: 'model', text: `API Error: ${result.error.message || 'Key may be invalid.'}` });
+        } else {
+          state.chatMessages.push({ role: 'model', text: 'Sorry, I encountered an error understanding that.' });
+        }
+        renderChatMessages();
+      } catch (err) {
+        console.error(err);
+        const loader = document.getElementById(loaderId);
+        if (loader) loader.remove();
+        state.chatMessages.push({ role: 'model', text: 'Connection error. Please check your internet or API key and try again.' });
+        renderChatMessages();
+      }
+    }
+
+    // Reset Dashboard State
+    function resetState() {
+      document.getElementById('global-search-input').value = '';
+      state.searchQuery = '';
+      state.activeYear = 2;
+      
+      const yearTabs = document.getElementById('year-tabs-container');
+      yearTabs.style.display = 'grid';
+      
+      changeYear(2);
+    }
+
+    // App Initialization
+    function init() {
+      // Setup themes
+      document.documentElement.setAttribute('data-theme', state.theme);
+      renderThemeIcon();
+      
+      // Update overall stats
+      const totalSubjects = Object.values(SYLLABUS_DATA).reduce((acc, curr) => acc + curr.length, 0);
+      const totalPYQs = Object.values(SYLLABUS_DATA).reduce((acc, curr) => 
+        acc + curr.reduce((subAcc, sub) => subAcc + (sub.pyqs ? sub.pyqs.length : 0), 0), 0
+      );
+      
+      document.getElementById('stats-subjects-count').innerText = `${totalSubjects} Core`;
+      document.getElementById('stats-pyqs-count').innerText = `${totalPYQs} Files`;
+
+      // Render initial subjects
+      changeYear(state.activeYear);
+    }
+
+    // Run launcher
+    window.onload = init;
+  </script>
+</body>
+</html>
