@@ -24,6 +24,7 @@ export interface Subject {
   id: string;
   name: string;
   code: string;
+  semester: string;
   description: string;
   modules: Topic[];
   notes: Note[];
@@ -39,6 +40,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'math1',
       name: 'Mathematics - I (Calculus and Linear Algebra)',
       code: 'BSC-M 102',
+      semester: 'I & II',
       description: 'Calculus, Evolutes, Matrices, Vector Spaces and transformations.',
       modules: [
         { title: 'Module 1 & 2: Calculus', topics: ['Evolutes and involutes', 'Evaluation of definite and improper integrals', 'Beta and Gamma functions', 'Applications of definite integrals', 'Rolle\'s theorem', 'Mean value theorems', 'Taylor\'s and Maclaurin theorems', 'Indeterminate forms', 'L\'Hospital\'s rule', 'Maxima and minima'] },
@@ -53,6 +55,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'math2',
       name: 'Mathematics - II (Probability and Statistics)',
       code: 'BSC-M 202',
+      semester: 'I & II',
       description: 'Probability spaces, distributions, statistics, and curve fitting.',
       modules: [
         { title: 'Module 1 & 2: Basic & Continuous Probability', topics: ['Probability spaces, conditional probability, independence', 'Discrete random variables, multinomial/Poisson/binomial distributions', 'Continuous random variables, normal, exponential and gamma densities'] },
@@ -68,6 +71,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'prog101',
       name: 'Programming for Problem Solving',
       code: 'ESC-CSE 101/201',
+      semester: 'I & II',
       description: 'Introduction to programming, algorithms, branching, loops, and basic data structures in C.',
       modules: [
         { title: 'Unit 1: Introduction to Programming', topics: ['Components of a computer system', 'Idea of Algorithm (Flowchart/Pseudocode)', 'Variables, memory locations', 'Syntax/Logical Errors'] },
@@ -83,6 +87,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'ee101',
       name: 'Basic Electrical Engineering',
       code: 'ESC-EE 101/201',
+      semester: 'I & II',
       description: 'DC & AC Circuits, Transformers, Electrical Machines and Power Converters.',
       modules: [
         { title: 'Module 1 & 2: DC & AC Circuits', topics: ['R, L, C elements, Kirchoff laws', 'Superposition, Thevenin and Norton Theorems', 'Time-domain analysis', 'Sinusoidal waveforms, peak/rms values, real/reactive power', 'Three-phase balanced circuits (star/delta)'] },
@@ -97,6 +102,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'chem101',
       name: 'Chemistry-I',
       code: 'BSC-CH 101/202',
+      semester: 'I & II',
       description: 'Atomic structure, spectroscopic techniques, periodic properties, and stereochemistry.',
       modules: [
         { title: 'Modules 1-4: Atomic and molecular structure', topics: ['Schrodinger equation, Molecular orbitals', 'Spectroscopic techniques (Electronic, Vibrational, Rotational, NMR)', 'Intermolecular forces and potential energy surfaces', 'Use of free energy in chemical equilibria (Thermodynamic functions, Nernst equation)'] },
@@ -110,6 +116,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'phys101',
       name: 'Physics',
       code: 'BSC-PH 101-105/201-205',
+      semester: 'I & II',
       description: 'Electromagnetic theory, mechanics, quantum mechanics, oscillations, and semiconductors.',
       modules: [
         { title: 'Introduction to Electromagnetic Theory', topics: ['Electrostatics in vacuum/dielectrics', 'Magnetostatics, Faraday\'s law', 'Maxwell\'s equations, Electromagnetic waves'] },
@@ -126,6 +133,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'engg_graphics',
       name: 'Engineering Graphics & Design',
       code: 'ESC-ME 102/202',
+      semester: 'I & II',
       description: 'Orthographic Projections, Regular Solids, Computer Graphics.',
       modules: [
         { title: 'Engineering Graphics & Design', topics: ['Orthographic Projections', 'Regular Solids', 'Sections, Isometric Projections', 'Computer Graphics (CAD setup, Annotations, 2D/3D modeling)'] }
@@ -138,6 +146,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'workshop',
       name: 'Workshop/Manufacturing Practices',
       code: 'ESC-ME 101/201',
+      semester: 'I & II',
       description: 'Casting, forming, machining, joining, CNC machining, Carpentry.',
       modules: [
         { title: 'Workshop/Manufacturing Practices', topics: ['Casting, forming, machining, joining', 'CNC machining, Fitting, Carpentry', 'Welding, Smithy, Plastic moulding'] }
@@ -150,6 +159,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'english101',
       name: 'English',
       code: 'HSM-HU 101/201',
+      semester: 'I & II',
       description: 'Vocabulary Building, Basic Writing Skills, Précis/Essay Writing.',
       modules: [
         { title: 'English', topics: ['Vocabulary Building', 'Basic Writing Skills (Sentence structures, clauses)', 'Identifying Common Errors', 'Précis/Essay Writing', 'Oral Communication (Listening, Pronunciation, Interviews)'] }
@@ -164,6 +174,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'dsa301',
       name: 'Data Structure & Algorithms',
       code: 'PCC-CSE 301',
+      semester: 'III',
       description: 'Searching, Stacks, Queues, Linked Lists, Trees, Sorting, and Graphs.',
       modules: [
         { title: 'Module 1: Introduction & Searching', topics: ['Basic terminologies, Data Structure Operations', 'Asymptotic Notations, Time-Space trade-off', 'Linear Search and Binary Search Techniques and complexity analysis'] },
@@ -179,6 +190,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'dl302',
       name: 'Digital Logic',
       code: 'ESC-CSE 302',
+      semester: 'III',
       description: 'Number Systems, Logic Gates, Combinational/Sequential Logic, PLDs.',
       modules: [
         { title: 'Module 1: Number System and Codes', topics: ['Decimal, binary, octal, hexadecimal', '1\'s and 2\'s complement', 'BCD, Excess-3, Gray codes'] },
@@ -196,6 +208,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'aec301',
       name: 'Analog Electronic Circuits',
       code: 'ESC-EC 301',
+      semester: 'III',
       description: 'Diode Circuits, BJT & FET, Operational Amplifiers, Oscillators.',
       modules: [
         { title: 'Module 1: Diode Circuits', topics: ['Ideal models', 'Clipper/Clamper circuits', 'Zener Diodes, SMPS'] },
@@ -211,6 +224,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'itw302',
       name: 'IT Workshop (Sci Lab/MATLAB)',
       code: 'PCC-CSE 302',
+      semester: 'III',
       description: 'MATLAB basics, Data Types, Plots and Graphics.',
       modules: [
         { title: 'Modules', topics: ['Introduction to MATLAB', 'Data Types, Operators (Arithmetic, Relational, Logical)', 'Scripting and Functions', 'Matrix/Array Manipulations', '2-D Plots and Graphics', 'File Handling, and Debugging'] }
@@ -223,6 +237,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'dm401',
       name: 'Discrete Mathematics',
       code: 'PCC-CSE 401',
+      semester: 'IV',
       description: 'Sets, Relations, Functions, Propositional Logic, Algebraic Structures.',
       modules: [
         { title: 'Module 1: Sets, Relations, Functions & Induction', topics: ['Operations on sets, Cartesian Products', 'Equivalence Relation, Bijective functions', 'Countable/Uncountable sets', 'Principle of Mathematical Induction, Euclidean Algorithm'] },
@@ -239,6 +254,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'coa402',
       name: 'Computer Organization & Architecture',
       code: 'PCC-CSE 402',
+      semester: 'IV',
       description: 'CPU, Memory, Data Representation, Pipelining.',
       modules: [
         { title: 'Module 1: Functional Blocks & Data Representation', topics: ['CPU, memory, I/O', 'Instruction execution cycle, addressing modes', 'Fixed/floating-point representation', 'Computer arithmetic (Carry look-ahead adder, Booth multiplier, Restoring/Non-restoring division)'] },
@@ -254,6 +270,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'os403',
       name: 'Operating Systems',
       code: 'PCC-CSE 403',
+      semester: 'IV',
       description: 'Processes, Threads, Scheduling, IPC, Deadlocks, Memory Management.',
       modules: [
         { title: 'Module 1: Intro, Processes & Threads', topics: ['OS Services, System Calls', 'Process State transitions, PCB, Context switching', 'Types of threads, Multithreading'] },
@@ -271,6 +288,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'daa404',
       name: 'Design & Analysis of Algorithms',
       code: 'PCC-CSE 404',
+      semester: 'IV',
       description: 'Asymptotic analysis, Algorithmic Strategies, NP-Completeness.',
       modules: [
         { title: 'Module 1: Introduction', topics: ['Asymptotic analysis (best, average, worst-case)', 'Solving recurrence relations (Substitution, Recursion tree, Master\'s theorem)'] },
@@ -289,6 +307,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'dbms501',
       name: 'Database Management Systems',
       code: 'PCC-CSE 501',
+      semester: 'V',
       description: 'Data Models, Relational Algebra, SQL, Normalization, Transactions.',
       modules: [
         { title: 'Module 1: Architecture & Data Models', topics: ['DDL, DML', 'Entity-Relationship Model', 'Relational and Object-Oriented Models'] },
@@ -305,6 +324,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'flat502',
       name: 'Formal Language & Automata Theory',
       code: 'PCC-CSE 502',
+      semester: 'V',
       description: 'Regular Languages, CFG, Pushdown Automata, Turing Machines.',
       modules: [
         { title: 'Module 1 & 2: Intro & Regular Languages', topics: ['Chomsky hierarchy', 'Deterministic (DFA) and Nondeterministic (NFA) finite automata', 'Regular expressions, Pumping lemma, minimization of FA'] },
@@ -319,6 +339,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'oop503',
       name: 'Object Oriented Programming',
       code: 'PCC-CSE 503',
+      semester: 'V',
       description: 'ADT, Encapsulation, Polymorphism, Inheritance, GUIs.',
       modules: [
         { title: 'Modules', topics: ['Abstract Data Types (ADT), Encapsulation, Polymorphism, Inheritance', 'Memory management', 'Generic types and collections', 'Graphical User Interfaces (GUIs) with Scala/Swing', 'Design patterns (Iterator, MVC)', 'Unified Modeling Language (UML)'] }
@@ -331,6 +352,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'cd601',
       name: 'Compiler Design',
       code: 'PCC-CSE 601',
+      semester: 'VI',
       description: 'Lexical Analysis, Syntax & Semantic Analysis, Code Optimization.',
       modules: [
         { title: 'Module 1: Introduction & Lexical Analysis', topics: ['Overview of compilation, Input Buffering', 'Specification and Recognition of Tokens', 'Finite Automata'] },
@@ -346,6 +368,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'cn602',
       name: 'Computer Networks',
       code: 'PCC-CSE 602',
+      semester: 'VI',
       description: 'OSI Model, MAC layer, IP Routing, TCP/UDP, Application Layer.',
       modules: [
         { title: 'Module 1: Data Comm & Physical Layer', topics: ['Topologies, OSI model', 'Transmission Media, Multiplexing (FDM, TDM, WDM)'] },
@@ -364,6 +387,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'ai611a',
       name: 'Artificial Intelligence',
       code: 'PEC-CSE 611a',
+      semester: 'VII & VIII',
       description: 'Search Techniques, Game Playing, Knowledge & Reasoning, Learning.',
       modules: [
         { title: 'Search Techniques', topics: ['Breadth-first, depth-first, A* search, heuristic search'] },
@@ -379,6 +403,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'cc712d',
       name: 'Cloud Computing',
       code: 'PEC-CSE 712d',
+      semester: 'VII & VIII',
       description: 'Cloud Models, Virtualization, Cloud Security & Tools.',
       modules: [
         { title: 'Cloud Delivery Models', topics: ['IaaS, PaaS, SaaS'] },
@@ -394,6 +419,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       id: 'cs811c',
       name: 'Cyber Security',
       code: 'PEC-CSE 811c',
+      semester: 'VII & VIII',
       description: 'Cryptography, Network Security, Malware & Forensics.',
       modules: [
         { title: 'Concepts & Cryptography', topics: ['Threats, Attacks, Exploits', 'Symmetric/Asymmetric cryptography', 'MD5, SHA, Digital Signatures'] },

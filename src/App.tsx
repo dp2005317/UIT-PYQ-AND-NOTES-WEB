@@ -115,18 +115,33 @@ function App() {
           </span>
         </div>
 
-        <div className="subjects-grid">
+        <div className="subjects-grid" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           {subjects.length === 0 ? (
-            <div style={{ gridColumn: 'span 2', textAlign: 'center', padding: '60px 0', border: '1px dashed var(--border-color)', borderRadius: '24px' }}>
+            <div style={{ textAlign: 'center', padding: '60px 0', border: '1px dashed var(--border-color)', borderRadius: '24px' }}>
               <p className="text-secondary">No subjects match your current search query. Try typing another concept like "normalization", "cns", or "TCP".</p>
             </div>
           ) : (
-            subjects.map(sub => (
-              <SubjectCard 
-                key={sub.id} 
-                subject={sub} 
-                onClick={() => setSelectedSubject(sub)} 
-              />
+            Object.entries(
+              subjects.reduce((acc, sub) => {
+                if (!acc[sub.semester]) acc[sub.semester] = [];
+                acc[sub.semester].push(sub);
+                return acc;
+              }, {} as Record<string, Subject[]>)
+            ).map(([sem, semSubjects]) => (
+              <div key={sem}>
+                <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-secondary)', letterSpacing: '0.05em', borderBottom: '1px solid var(--border-color)', paddingBottom: '8px' }}>
+                  Semester {sem}
+                </h3>
+                <div className="subjects-grid">
+                  {semSubjects.map(sub => (
+                    <SubjectCard 
+                      key={sub.id} 
+                      subject={sub} 
+                      onClick={() => setSelectedSubject(sub)} 
+                    />
+                  ))}
+                </div>
+              </div>
             ))
           )}
         </div>
