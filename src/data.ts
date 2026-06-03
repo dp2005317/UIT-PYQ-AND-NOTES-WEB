@@ -47,10 +47,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Matrices', topics: ['Vectors: addition/scalar multiplication', 'Linear systems', 'linear Independence', 'rank', 'determinants', 'Cramer\'s Rule', 'inverse', 'Gauss/Gauss-Jordan elimination'] },
         { title: 'Module 4 & 5: Vector Spaces', topics: ['Linear dependence, basis, dimension', 'Linear transformations, range/kernel, rank/nullity', 'Eigenvalues, eigenvectors, symmetric/skew-symmetric/orthogonal matrices, diagonalisation', 'Inner product spaces, Gram-Schmidt'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'math2',
@@ -64,10 +61,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4 & 5: Basic & Applied Statistics', topics: ['Measures of Central tendency (Moments, skewness, Kurtosis)', 'Curve fitting (least squares)', 'Test of significance (Large sample test for proportions, means, etc.)'] },
         { title: 'Module 6: Small Samples', topics: ['Test for single mean, difference of means, correlation coefficients', 'Chi-square test for goodness of fit'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'prog101',
@@ -81,10 +75,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Unit 4 & 5: Algorithms & Functions', topics: ['Searching, Sorting (Bubble, Insertion, Selection)', 'Functions, Parameter passing, call by value/reference'] },
         { title: 'Unit 6-8: Recursion, Structures & Pointers', topics: ['Recursion (Factorial, Fibonacci)', 'Defining structures', 'Pointers, Use in self-referential structures', 'linked list notion', 'File Handling'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'ee101',
@@ -97,10 +88,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3 & 4: Transformers & Electrical Machines', topics: ['Magnetic materials, ideal/practical transformers, losses', 'Three-phase induction motors, DC motors, Synchronous generators'] },
         { title: 'Module 5 & 6: Power Converters & Installations', topics: ['DC-DC buck/boost, Inverters', 'Switchgear (MCB, ELCB, MCCB), Earthing, Batteries'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'chem101',
@@ -112,10 +100,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Modules 1-4: Atomic/molecular structure', topics: ['Schrodinger, Molecular orbitals', 'Spectroscopic techniques (Electronic, Vibrational, Rotational, NMR)', 'Intermolecular forces', 'Free energy in chemical equilibria'] },
         { title: 'Modules 5-7: Periodic properties', topics: ['effective nuclear charge, ionization energies', 'Stereochemistry (isomers, chirality)', 'Organic reactions and synthesis of a drug molecule'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'phys101',
@@ -130,10 +115,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Oscillations, Waves and Optics', topics: ['Simple harmonic motion, Transverse/longitudinal waves', 'Geometric/Wave optics, Lasers'] },
         { title: 'Semiconductor Physics', topics: ['Intrinsic/extrinsic semiconductors, Carrier transport', 'p-n junction', 'Engineered materials'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'engg_graphics',
@@ -144,10 +126,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Engineering Graphics & Design', topics: ['Orthographic Projections', 'Regular Solids', 'Sections, Isometric Projections', 'Computer Graphics (CAD, 2D/3D modeling)'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'workshop',
@@ -158,10 +137,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Workshop/Manufacturing Practices', topics: ['Casting, forming, machining, joining', 'CNC machining, Fitting, Carpentry, Welding'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'english101',
@@ -172,10 +148,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'English', topics: ['Vocabulary', 'Basic Writing Skills, Common Errors', 'Précis/Essay Writing', 'Oral Communication'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     }
   ],
   2: [
@@ -191,10 +164,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Power & Operational Amplifiers', topics: ['Class A/B/AB/C/D', 'Ideal OP-AMP parameters', 'Inverting/Non-inverting, Integrators, Differentiators, Schmitt triggers, Active RC filters'] },
         { title: 'Module 4: Feedback and Oscillators', topics: ['Series-shunt/series-series topologies', 'Barkhausen criterion, Wien Bridge, Crystal Oscillators', '555 timer'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'dsa301',
@@ -208,10 +178,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Linked Lists & Trees', topics: ['Singly/Doubly/Circular Linked Lists', 'Types of Trees: Binary Tree, BST, AVL Tree, B Tree, B+ Tree'] },
         { title: 'Module 4: Sorting, Hashing & Graphs', topics: ['Selection, Bubble, Insertion, Quick, Merge, Heap Sort', 'Hashing', 'Graph traversal (DFS, BFS)'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'itw302',
@@ -222,10 +189,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Intro to MATLAB, Data Types, Operators', 'Scripting and Functions', 'Matrix/Array Manipulations', '2-D Plots and Graphics', 'File Handling, Debugging'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'dl302',
@@ -239,10 +203,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4: Combinational Logic', topics: ['Adders, Subtractors, Multiplexers, Decoders, Encoders, Comparators'] },
         { title: 'Module 5 & 6: Sequential Logic & PLDs', topics: ['Latches, Flip-flops (R-S, J-K, D, T)', 'Registers, Counters, Finite State Machines', 'PAL, PLA'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'dc302',
@@ -254,10 +215,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 1 & 2: Successive Derivatives', topics: ['Leibnitz\'s Theorem, Concavity/Convexity, Curvature, Asymptotes', 'Limit, Continuity, Differentiability of multivariable functions', 'Partial Derivatives, Jacobian, Taylor\'s/Maclaurin\'s, Lagrange\'s multipliers'] },
         { title: 'Module 3: Functional Analysis', topics: ['Metric space, Normed Space, Banach Space, Inner Product Space, Hilbert Space'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'eb301',
@@ -268,10 +226,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Introduction to Biology, Classification (cellularity, molecular taxonomy)', 'Genetics (Mendel\'s laws, mapping)', 'Biomolecules, Enzymes', 'Information Transfer (DNA/RNA, genetic code)', 'Macromolecular analysis, Metabolism, Microbiology'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'loc381',
@@ -282,10 +237,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Indian English Literature Evolution', 'Phonetics (Speech organs, vowels/consonants)', 'Conversation & GD Strategies, Presentation Skills'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'dm401',
@@ -300,10 +252,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4: Algebraic Structures', topics: ['Semi Groups, Monoids, Groups, Rings, Fields', 'Boolean Algebra'] },
         { title: 'Module 5: Graphs and Trees', topics: ['Connectivity, Path, Cycle, Isomorphism', 'Eulerian/Hamiltonian Walks, Graph Colouring, Planar Graphs'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'coa402',
@@ -317,10 +266,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Pipelining & Parallel Processors', topics: ['Pipelining concepts, pipeline hazards', 'Concurrent access, cache coherency'] },
         { title: 'Module 4: Memory Organization', topics: ['Memory interleaving, hierarchical memory, cache mapping, replacement algorithms'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'os403',
@@ -336,10 +282,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 5: Memory Management', topics: ['Contiguous allocation, Paging, Virtual Memory', 'Demand paging, Page Replacement (FIFO, LRU)'] },
         { title: 'Module 6 & 7: I/O & File Management', topics: ['Device controllers, DMA', 'File Access methods', 'Disk scheduling (FCFS, SSTF, SCAN, C-SCAN)'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'daa404',
@@ -353,10 +296,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Graph and Tree Algorithms', topics: ['DFS, BFS, Shortest path', 'Minimum Spanning Tree, Network Flow'] },
         { title: 'Module 4 & 5: Complexity & Advanced', topics: ['P, NP, NP-complete, NP-hard', 'Approximation algorithms, Randomized algorithms'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'ea401',
@@ -367,10 +307,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Micro/Macro theory basics, Marshallian theory', 'Demand/Supply, Production (Isoquant, AP, MP, AC, MC)', 'Monopoly/Oligopoly pricing', 'National Income (GDP, GNP), Inflation, Banking', 'Basic Financial Accounting (Double entry, Ledger, Trial Balance, Ratio Analysis, NPV, IRR)'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'es402',
@@ -381,10 +318,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Ecosystems, Greenhouse gases/global warming', 'Environmental chemistry (BOD, COD)', 'Air pollution modelling, Environmental Biology (Bioaccumulation)', 'Waste Management, Disaster management, EIA'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'bc481',
@@ -395,10 +329,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Role of Comm in Information Age, Style/organization', 'Personality development (psychological aspects, etiquette)', 'Business writings (Letters, reports, memos)'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     }
   ],
   3: [
@@ -411,10 +342,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Continuous/Discrete time signals', 'Fourier series, Fourier Transform, Convolution', 'Parseval\'s Theorem. Sampling theorem', 'Continuous/discrete time LTI systems', 'Z-Transform and Inverse Z-Transform'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'dbms501',
@@ -429,10 +357,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4: Transaction Processing', topics: ['Concurrency Control, ACID', 'Serializability, Locking, Timestamping, Recovery'] },
         { title: 'Module 5 & 6: Security & Advanced Topics', topics: ['Authentication, Access Control, SQL Injection', 'Distributed Databases, Data Warehousing, Data Mining'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'flat502',
@@ -445,10 +370,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3 & 4: Context-Free & Context-Sensitive', topics: ['Context-free grammars (CFG), Pushdown Automata (PDA)', 'Chomsky/Greibach normal forms', 'Linear bounded automata'] },
         { title: 'Module 5 & 6: Turing Machines & Undecidability', topics: ['Turing Machine models', 'Church-Turing thesis, Halting problem, Rice\'s theorem'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'oop503',
@@ -459,10 +381,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Abstract Data Types (ADT), Encapsulation, Polymorphism, Inheritance', 'Memory management, Generic types and collections', 'Graphical User Interfaces (GUIs) with Scala/Swing', 'Design patterns (Iterator, MVC), Unified Modeling Language (UML)'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'coi501',
@@ -473,10 +392,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Indian Constitution history, Fundamental Rights/Duties, DPSP', 'Union Government (President, PM, Parliament, Supreme Court)', 'State Government. Local Administration, Panchayati Raj', 'Election Commission, Emergency Provisions, Constitutional Amendments'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'gpd581',
@@ -487,10 +403,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Self-Esteem, Goal-Setting', 'Public Speaking, Oral presentation/body language', 'Career Communication (Resume building), Job Interview skills'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe511a',
@@ -501,10 +414,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['SDLC Models (Waterfall, Spiral, Agile)', 'SRS Gathering, System Design (DFD, Coupling/Cohesion)', 'Testing (Alpha/Beta, Black/White box), Maintenance'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe511b',
@@ -515,10 +425,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Randomized Algorithms (Monte Carlo/Las Vegas)', 'Parallel Algorithms, NP-Completeness Proofs', 'Approximation Algorithms, Online Algorithms, Linear Programming'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe511c',
@@ -529,10 +436,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Parallelism, RISC/CISC, Pipelining hazards', 'Vector Processing, Array Processors', 'Loosely/Tightly Coupled Multiprocessors, Memory Interleaving'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe511d',
@@ -543,10 +447,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Timing constraints, Clock Driven/Priority Driven Scheduling (EDF, RMS)', 'Resource Sharing (Priority-Ceiling Protocols)', 'Real Time Communication & Databases'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'cd601',
@@ -560,10 +461,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Symbol Table & Run-time', topics: ['Memory allocation, parameter passing, Intermediate Code Generation'] },
         { title: 'Module 4: Code Improvement', topics: ['Control-flow analysis, local/global optimization', 'loop optimization, register allocation'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'cn602',
@@ -578,10 +476,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4: Transport Layer', topics: ['UDP, TCP, Congestion Control, QoS (Leaky/Token Bucket)'] },
         { title: 'Module 5: Application Layer', topics: ['DNS, FTP, HTTP, SNMP, Firewalls, Basic Cryptography'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'ppl653',
@@ -592,10 +487,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Python basics, Conditional/Loop Statements, String Operations', 'Functions/Recursion, Exception Handling, File I/O', 'OOP Concepts, GUI Design, Packages'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'gdpi681',
@@ -606,10 +498,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Advanced Tech Comm (Emails), Presentation using audio-visual aids', 'Interview Etiquettes (Mock interviews, telephone/video)', 'Group Discussion Models'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe611a',
@@ -620,10 +509,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Search Techniques (A*, Heuristics), Game Playing (Minimax, alpha-beta)', 'Knowledge & Reasoning (First-order logic)', 'Planning, Learning, Prolog'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe611b',
@@ -634,10 +520,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Raster Scan, Line/Circle Drawing (Bresenham\'s, DDA)', 'Polygon Filling, 2D/3D Transformations, Viewing & Clipping', 'Curve Generation, Hidden Surfaces, Color & Shading'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe611c',
@@ -648,10 +531,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Architectures, Middleware, Clock Synchronization, Code Migration', 'Fault Tolerance, Distributed Commit, Java RMI, Coordination-based systems'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe611d',
@@ -662,10 +542,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Hardware (Sensors, ASICs, Memories)', 'Embedded OS & Middleware (WCET, RTOS)', 'HW/SW Co-Design, Validation, Applications'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe612a',
@@ -676,10 +553,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Network/Distributed OS concepts', 'Synchronization (Clock, Mutual exclusion)', 'Global state, Distributed Deadlock, Failure Recovery, Fault tolerance'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe612b',
@@ -690,10 +564,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Artificial Neural Networks (Perceptron, Back Propagation, Kohonen SOM)', 'Fuzzy Sets & Logic (Mamdani/Sugeno)', 'Genetic Algorithms'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe612c',
@@ -704,10 +575,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Discrete-time signals, Z-transform', 'Discrete Fourier Transform (DFT, FFT)', 'Design of FIR/IIR Digital Filters'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     },
     {
       id: 'pe612d',
@@ -718,10 +586,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['KDD Process, Data Pre-processing', 'Association Rule Mining (Apriori, FP-Tree)', 'Classification (Decision trees, Bayes), Clustering (K-means, Hierarchical)', 'Web/Spatial Mining'] }
       ],
-      notes: [
-        { title: 'Module 1 Quick Revision', content: 'Review the fundamental concepts, definitions, and basic principles covered in the first module. Pay attention to the core terminology.' },
-        { title: 'Exam Cheat Sheet', content: 'Focus on the most frequently asked questions and key formulas. Practice deriving the main equations.' }
-      ], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: []
     }
   ],
   4: [

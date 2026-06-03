@@ -69,7 +69,7 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
         <div className="drawer-tabs">
           <button className={`drawer-tab-btn ${activeTab === 'syllabus' ? 'active' : ''}`} onClick={() => setActiveTab('syllabus')}>Syllabus</button>
           <button className={`drawer-tab-btn ${activeTab === 'pyq' ? 'active' : ''}`} onClick={() => setActiveTab('pyq')}>Past PYQs</button>
-          <button className={`drawer-tab-btn ${activeTab === 'notes' ? 'active' : ''}`} onClick={() => setActiveTab('notes')}>Revision</button>
+          <button className={`drawer-tab-btn ${activeTab === 'notes' ? 'active' : ''}`} onClick={() => setActiveTab('notes')}>Notes</button>
           <button className={`drawer-tab-btn ${activeTab === 'flashcard' ? 'active' : ''}`} onClick={() => setActiveTab('flashcard')}>Prep Cards</button>
         </div>
 
