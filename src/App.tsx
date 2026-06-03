@@ -9,7 +9,7 @@ import './index.css';
 
 function App() {
   const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'dark');
-  const [activeYear, setActiveYear] = useState<number>(2);
+  const [activeSemester, setActiveSemester] = useState<string | null>(localStorage.getItem('activeSemester') || null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -18,6 +18,14 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    if (activeSemester) {
+      localStorage.setItem('activeSemester', activeSemester);
+    } else {
+      localStorage.removeItem('activeSemester');
+    }
+  }, [activeSemester]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
@@ -34,12 +42,12 @@ function App() {
     const query = searchQuery.trim().toLowerCase();
     let list: Subject[] = [];
     
-    if (query) {
-      Object.values(SYLLABUS_DATA).forEach(y => {
-        list.push(...y);
-      });
-    } else {
-      list = SYLLABUS_DATA[activeYear] || [];
+    Object.values(SYLLABUS_DATA).forEach(y => {
+      list.push(...y);
+    });
+
+    if (!query && activeSemester) {
+      list = list.filter(sub => sub.semester === activeSemester);
     }
 
     if (!query) return list;
@@ -68,7 +76,29 @@ function App() {
         theme={theme} 
         toggleTheme={toggleTheme} 
         toggleSettings={() => {}} // Skipping full API config modal for now to keep it minimal as requested by rules
+        onChangeSemester={() => setActiveSemester(null)}
       />
+
+      {/* Semester Selection Overlay */}
+      {!activeSemester && (
+        <div className="semester-overlay">
+          <div className="semester-modal">
+            <h2>Select Your Semester</h2>
+            <p>Choose your current semester to view the relevant syllabus, notes, and pyqs.</p>
+            <div className="semester-grid">
+              {['I & II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'].map((sem, idx) => (
+                <button 
+                  key={sem} 
+                  className="semester-btn"
+                  onClick={() => setActiveSemester(sem)}
+                >
+                  Semester {sem === 'I & II' ? '1 & 2' : idx + 2}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <main className="app-container">
         <Hero 
@@ -77,38 +107,9 @@ function App() {
           setSearchQuery={setSearchQuery} 
         />
 
-        {!searchQuery.trim() && (
-          <div className="year-grid" id="year-tabs-container">
-            {[1, 2, 3, 4].map(year => {
-              const names: Record<number, string> = {
-                1: 'Engineering Basics',
-                2: 'Core Structures',
-                3: 'Advanced Systems',
-                4: 'Cloud & Specialization'
-              };
-              const numerals: Record<number, string> = {
-                1: 'Year I',
-                2: 'Year II',
-                3: 'Year III',
-                4: 'Year IV'
-              };
-              return (
-                <button 
-                  key={year}
-                  className={`year-tab-button ${activeYear === year ? 'active' : ''}`}
-                  onClick={() => setActiveYear(year)}
-                >
-                  <span className="year-num">{numerals[year]}</span>
-                  <span className="year-name">{names[year]}</span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
         <div className="subjects-title-row">
           <h2 style={{ fontSize: '1.25rem' }}>
-            {searchQuery.trim() ? `Search Results for "${searchQuery.trim()}"` : `Year ${['I','II','III','IV'][activeYear-1]} Courses & Syllabus`}
+            {searchQuery.trim() ? `Search Results for "${searchQuery.trim()}"` : `Semester ${activeSemester === 'I & II' ? '1 & 2' : activeSemester} Courses & Syllabus`}
           </h2>
           <span className="text-secondary" style={{ fontSize: '0.85rem' }}>
             {subjects.length} courses loaded
