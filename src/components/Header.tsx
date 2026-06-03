@@ -13,7 +13,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, toggleSettin
       <div className="header-inner">
         <div className="brand" onClick={() => window.location.reload()}>
           <div className="brand-logo">
-            <img src="/logo.png" alt="UIT Logo" style={{ height: '32px', width: 'auto' }} />
+            <img src="/logo.png" alt="UIT Logo" className="brand-logo-img" style={{ height: '32px', width: 'auto' }} />
             UIT <span>notes and pyqs</span>
           </div>
         </div>
