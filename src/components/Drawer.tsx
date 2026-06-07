@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Subject, PYQ } from '../data';
+import { PdfViewerModal } from './PdfViewerModal';
 
 interface DrawerProps {
   subject: Subject | null;
@@ -12,6 +13,7 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
   const [downloadStates, setDownloadStates] = useState<Record<string, { status: string; progress: number }>>({});
   const [flashcardIndex, setFlashcardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [viewPdf, setViewPdf] = useState<{url: string, title: string} | null>(null);
 
   // Reset states when subject changes
   React.useEffect(() => {
@@ -130,7 +132,7 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
                       {pyq.fileUrl && (
                         <button 
                           className="download-btn"
-                          onClick={() => window.open(pyq.fileUrl, '_blank')}
+                          onClick={() => setViewPdf({ url: pyq.fileUrl!, title: `${subject.name} - ${pyq.year} ${pyq.type}` })}
                           style={{ minWidth: '80px', backgroundColor: 'var(--bg-tertiary)' }}
                         >
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
@@ -212,6 +214,21 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
           )}
         </div>
       </div>
+      {viewPdf && (
+        <PdfViewerModal 
+          url={viewPdf.url} 
+          title={viewPdf.title} 
+          onClose={() => setViewPdf(null)}
+          onDownload={() => {
+            const tempLink = document.createElement('a');
+            tempLink.href = viewPdf.url;
+            tempLink.setAttribute('download', '');
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+          }}
+        />
+      )}
     </div>
   );
 };
