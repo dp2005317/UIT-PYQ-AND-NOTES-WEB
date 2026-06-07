@@ -18,6 +18,7 @@ export interface PYQ {
   type: string;
   duration: string;
   questions: number;
+  fileUrl?: string;
 }
 
 export interface Subject {
@@ -252,7 +253,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4: Algebraic Structures', topics: ['Semi Groups, Monoids, Groups, Rings, Fields', 'Boolean Algebra'] },
         { title: 'Module 5: Graphs and Trees', topics: ['Connectivity, Path, Cycle, Isomorphism', 'Eulerian/Hamiltonian Walks, Graph Colouring, Planar Graphs'] }
       ],
-      notes: [], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: [{ year: 2024, type: 'Mid Sem', duration: '2 Hrs', questions: 0, fileUrl: '/pyqs/Discrete Mathematics.pdf' }]
     },
     {
       id: 'coa402',
@@ -282,7 +283,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 5: Memory Management', topics: ['Contiguous allocation, Paging, Virtual Memory', 'Demand paging, Page Replacement (FIFO, LRU)'] },
         { title: 'Module 6 & 7: I/O & File Management', topics: ['Device controllers, DMA', 'File Access methods', 'Disk scheduling (FCFS, SSTF, SCAN, C-SCAN)'] }
       ],
-      notes: [], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: [{ year: 2024, type: 'Mid Sem', duration: '2 Hrs', questions: 0, fileUrl: '/pyqs/Operating System.pdf' }]
     },
     {
       id: 'daa404',
@@ -296,7 +297,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 3: Graph and Tree Algorithms', topics: ['DFS, BFS, Shortest path', 'Minimum Spanning Tree, Network Flow'] },
         { title: 'Module 4 & 5: Complexity & Advanced', topics: ['P, NP, NP-complete, NP-hard', 'Approximation algorithms, Randomized algorithms'] }
       ],
-      notes: [], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: [{ year: 2024, type: 'Mid Sem', duration: '2 Hrs', questions: 0, fileUrl: '/pyqs/Design and Analysis of Algorithms.pdf' }]
     },
     {
       id: 'ea401',
@@ -307,7 +308,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Micro/Macro theory basics, Marshallian theory', 'Demand/Supply, Production (Isoquant, AP, MP, AC, MC)', 'Monopoly/Oligopoly pricing', 'National Income (GDP, GNP), Inflation, Banking', 'Basic Financial Accounting (Double entry, Ledger, Trial Balance, Ratio Analysis, NPV, IRR)'] }
       ],
-      notes: [], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: [{ year: 2024, type: 'Mid Sem', duration: '2 Hrs', questions: 0, fileUrl: '/pyqs/Economics and Accountancy.pdf' }]
     },
     {
       id: 'es402',
@@ -318,7 +319,7 @@ export const SYLLABUS_DATA: SyllabusData = {
       modules: [
         { title: 'Modules', topics: ['Ecosystems, Greenhouse gases/global warming', 'Environmental chemistry (BOD, COD)', 'Air pollution modelling, Environmental Biology (Bioaccumulation)', 'Waste Management, Disaster management, EIA'] }
       ],
-      notes: [], flashcards: [], pyqs: []
+      notes: [], flashcards: [], pyqs: [{ year: 2024, type: 'Mid Sem', duration: '2 Hrs', questions: 0, fileUrl: '/pyqs/Environmental Science.pdf' }]
     },
     {
       id: 'bc481',

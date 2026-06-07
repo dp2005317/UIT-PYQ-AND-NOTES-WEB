@@ -25,6 +25,20 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
   const handleDownload = (pyqId: string, pyq: PYQ) => {
     if (downloadStates[pyqId]?.status === 'downloading' || downloadStates[pyqId]?.status === 'success') return;
 
+    if (pyq.fileUrl) {
+      // Trigger actual download
+      const link = document.createElement('a');
+      link.href = pyq.fileUrl;
+      link.download = pyq.fileUrl.split('/').pop() || `${subject.code}_${pyq.year}_${pyq.type.replace(/\s+/g, '')}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'success', progress: 100 } }));
+      showToast(`Downloaded: ${link.download} Successfully!`);
+      return;
+    }
+
     setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'downloading', progress: 0 } }));
 
     let progress = 0;
@@ -35,7 +49,7 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
       if (progress >= 100) {
         clearInterval(interval);
         setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'success', progress: 100 } }));
-        showToast(`Downloaded: ${subject.code}_${pyq.year}_${pyq.type.replace(/\\s+/g, '')}.pdf Successfully!`);
+        showToast(`Downloaded: ${subject.code}_${pyq.year}_${pyq.type.replace(/\s+/g, '')}.pdf Successfully!`);
       }
     }, 100);
   };
