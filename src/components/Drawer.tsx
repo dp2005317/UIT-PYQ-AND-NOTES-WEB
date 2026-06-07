@@ -126,25 +126,37 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
                       </div>
                     </div>
 
-                    <button 
-                      className={`download-btn ${state?.status === 'downloading' ? 'downloading' : ''} ${state?.status === 'success' ? 'success' : ''}`}
-                      onClick={() => handleDownload(pyqId, pyq)}
-                      disabled={state?.status === 'downloading'}
-                    >
-                      {state?.status === 'downloading' ? (
-                        <>
-                          <span>Downloading {state.progress}%</span>
-                          <div className="download-progress-bar" style={{ width: `${state.progress}%`, display: 'block' }}></div>
-                        </>
-                      ) : state?.status === 'success' ? (
-                        <span>✓ Saved</span>
-                      ) : (
-                        <>
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
-                          <span>Get PDF</span>
-                        </>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      {pyq.fileUrl && (
+                        <button 
+                          className="download-btn"
+                          onClick={() => window.open(pyq.fileUrl, '_blank')}
+                          style={{ minWidth: '80px', backgroundColor: 'var(--bg-tertiary)' }}
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+                          <span>View</span>
+                        </button>
                       )}
-                    </button>
+                      <button 
+                        className={`download-btn ${state?.status === 'downloading' ? 'downloading' : ''} ${state?.status === 'success' ? 'success' : ''}`}
+                        onClick={() => handleDownload(pyqId, pyq)}
+                        disabled={state?.status === 'downloading'}
+                      >
+                        {state?.status === 'downloading' ? (
+                          <>
+                            <span>Downloading {state.progress}%</span>
+                            <div className="download-progress-bar" style={{ width: `${state.progress}%`, display: 'block' }}></div>
+                          </>
+                        ) : state?.status === 'success' ? (
+                          <span>✓ Saved</span>
+                        ) : (
+                          <>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+                            <span>Download</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 );
               })}
