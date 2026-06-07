@@ -1,26 +1,39 @@
 import React from 'react';
 
 interface HeaderProps {
-  onSearchClick: () => void;
+  theme: string;
+  toggleTheme: () => void;
+  toggleSettings: (open: boolean) => void;
+  onChangeSemester: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
+export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, toggleSettings, onChangeSemester }) => {
   return (
-    <nav className="dynamic-island-nav">
-      <div className="brand-logo" onClick={() => window.location.reload()}>
-        <img src="/logo.png" alt="UIT Logo" className="brand-logo-img" style={{ height: '32px', width: 'auto', background: '#ffffff', borderRadius: '6px', padding: '2px' }} />
-        UIT <span style={{ fontSize: '0.85rem', fontWeight: 400, marginLeft: '6px', opacity: 0.8 }}>notes and pyqs</span>
+    <header className="site-header">
+      <div className="header-inner">
+        <div className="brand" onClick={() => window.location.reload()}>
+          <div className="brand-logo">
+            <img src="/logo.png" alt="UIT Logo" className="brand-logo-img" style={{ height: '32px', width: 'auto' }} />
+            UIT <span>notes and pyqs</span>
+          </div>
+        </div>
+
+        <div className="header-actions">
+          <button className="btn-primary" onClick={onChangeSemester} style={{ marginRight: '8px' }}>
+            Change Semester
+          </button>
+          <button className="btn-icon" onClick={() => toggleSettings(true)} title="Configure Gemini API Settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" /></svg>
+          </button>
+          <button className="btn-icon" onClick={toggleTheme} title="Toggle Light/Dark Theme">
+            {theme === 'dark' ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+            )}
+          </button>
+        </div>
       </div>
-      <div className="nav-links">
-        <button className="nav-btn" onClick={onSearchClick} title="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <span>Search</span>
-        </button>
-        <button className="nav-btn primary" onClick={() => alert('Settings API Key logic can be added here later')} title="AI Config">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span>AI Key</span>
-        </button>
-      </div>
-    </nav>
+    </header>
   );
 };

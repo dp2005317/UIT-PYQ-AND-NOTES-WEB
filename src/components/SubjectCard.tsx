@@ -7,22 +7,22 @@ interface SubjectCardProps {
 }
 
 export const SubjectCard: React.FC<SubjectCardProps> = ({ subject, onClick }) => {
-  // Use first letter of name as a fallback icon
-  const icon = subject.name.charAt(0);
-
   return (
-    <div className="bento-card" onClick={onClick}>
-      <div className="card-content">
-        <div className="card-header">
-          <div className="card-icon">{icon}</div>
-          <span className="card-code">{subject.code}</span>
+    <div className="subject-card" onClick={onClick}>
+      <div>
+        <div className="subject-header">
+          <span className="subject-code">{subject.code}</span>
+          <svg className="text-secondary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </div>
-        <h3 className="card-title">{subject.name}</h3>
-        <p className="card-desc">{subject.description}</p>
+        <h3 className="subject-name">{subject.name}</h3>
+        <p className="subject-desc">{subject.description}</p>
       </div>
-      <div className="card-footer">
+
+      <div className="subject-footer">
         <span>{subject.modules ? subject.modules.length : 0} Modules</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span className="subject-action-link">
+          Study Hub <svg style={{ width: '14px', height: '14px' }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </span>
       </div>
     </div>
   );
