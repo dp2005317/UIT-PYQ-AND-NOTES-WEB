@@ -9,7 +9,7 @@ interface AiPanelProps {
 
 export const AiPanel: React.FC<AiPanelProps> = ({ isOpen, onToggle, activeSubject }) => {
   const [messages, setMessages] = useState<{role: string, text: string}[]>([
-    { role: 'model', text: 'Nexus intelligence initialized. How can I assist your engineering study today?' }
+    { role: 'model', text: 'UIT intelligence initialized. How can I assist your engineering study today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -73,7 +73,7 @@ export const AiPanel: React.FC<AiPanelProps> = ({ isOpen, onToggle, activeSubjec
             </div>
           </div>
           <div>
-            <h4 style={{ fontWeight: 600, fontSize: '1rem' }}>Nexus Intelligence</h4>
+            <h4 style={{ fontWeight: 600, fontSize: '1rem' }}>UIT Intelligence</h4>
             <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }} id="ai-context">
               {activeSubject ? `Context: ${activeSubject.code}` : 'System Ready'}
             </span>

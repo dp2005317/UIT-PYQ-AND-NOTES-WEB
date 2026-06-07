@@ -8,8 +8,8 @@ export const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
   return (
     <nav className="dynamic-island-nav">
       <div className="brand-logo" onClick={() => window.location.reload()}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Nexus IT
+        <img src="/logo.png" alt="UIT Logo" className="brand-logo-img" style={{ height: '32px', width: 'auto', background: '#ffffff', borderRadius: '6px', padding: '2px' }} />
+        UIT <span style={{ fontSize: '0.85rem', fontWeight: 400, marginLeft: '6px', opacity: 0.8 }}>notes and pyqs</span>
       </div>
       <div className="nav-links">
         <button className="nav-btn" onClick={onSearchClick} title="Search">
