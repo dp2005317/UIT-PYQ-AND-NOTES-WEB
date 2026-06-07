@@ -1,164 +1,137 @@
 import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
-import { Hero } from './components/Hero';
 import { SubjectCard } from './components/SubjectCard';
 import { Drawer } from './components/Drawer';
+import { SpotlightSearch } from './components/SpotlightSearch';
+import { AiPanel } from './components/AiPanel';
 import { SYLLABUS_DATA } from './data';
 import type { Subject } from './data';
 import './index.css';
 
 function App() {
-  const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'dark');
-  const [activeSemester, setActiveSemester] = useState<string | null>(localStorage.getItem('activeSemester') || null);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [activeSemester, setActiveSemester] = useState<number>(2); // Year II
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAiOpen, setIsAiOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    setIsMobile(window.innerWidth <= 768);
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
+  // Mouse tracking logic for the bento cards
   useEffect(() => {
-    if (activeSemester) {
-      localStorage.setItem('activeSemester', activeSemester);
-    } else {
-      localStorage.removeItem('activeSemester');
-    }
-  }, [activeSemester]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 3500);
-  };
-
-  const getFilteredSubjects = () => {
-    const query = searchQuery.trim().toLowerCase();
-    let list: Subject[] = [];
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth <= 768) return;
+      const cards = document.querySelectorAll('.bento-card');
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    };
     
-    Object.values(SYLLABUS_DATA).forEach(y => {
-      list.push(...y);
-    });
-
-    if (!query && activeSemester) {
-      list = list.filter(sub => sub.semester === activeSemester);
+    const grid = document.getElementById('bento-grid');
+    if (grid) {
+      grid.addEventListener('mousemove', handleMouseMove);
     }
+    return () => {
+      if (grid) grid.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [activeSemester]); // Re-bind if cards change
 
-    if (!query) return list;
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+      if (e.key === 'Escape') {
+        setIsSearchOpen(false);
+        setSelectedSubject(null);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
-    return list.filter(sub => 
-      sub.name.toLowerCase().includes(query) ||
-      sub.code.toLowerCase().includes(query) ||
-      sub.description.toLowerCase().includes(query) ||
-      sub.modules.some(m => 
-        m.title.toLowerCase().includes(query) ||
-        m.topics.some(t => t.toLowerCase().includes(query))
-      )
-    );
-  };
-
-  const subjects = getFilteredSubjects();
-
-  const totalSubjects = Object.values(SYLLABUS_DATA).reduce((acc, curr) => acc + curr.length, 0);
-  const totalPYQs = Object.values(SYLLABUS_DATA).reduce((acc, curr) => 
-    acc + curr.reduce((subAcc, sub) => subAcc + (sub.pyqs ? sub.pyqs.length : 0), 0), 0
-  );
+  const subjects = SYLLABUS_DATA[activeSemester] || [];
 
   return (
     <>
-      <Header 
-        theme={theme} 
-        toggleTheme={toggleTheme} 
-        toggleSettings={() => {}} // Skipping full API config modal for now to keep it minimal as requested by rules
-        onChangeSemester={() => setActiveSemester(null)}
-      />
+      <div className="noise-overlay"></div>
+      <div className="ambient-light light-1"></div>
+      <div className="ambient-light light-2"></div>
 
-      {/* Semester Selection Overlay */}
-      {!activeSemester && (
-        <div className="semester-overlay">
-          <div className="semester-modal">
-            <h2>Select Your Semester</h2>
-            <p>Choose your current semester to view the relevant syllabus, notes, and pyqs.</p>
-            <div className="semester-grid">
-              {['I & II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'].map((sem, idx) => (
-                <button 
-                  key={sem} 
-                  className="semester-btn"
-                  onClick={() => setActiveSemester(sem)}
-                >
-                  Semester {sem === 'I & II' ? '1 & 2' : idx + 2}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      <Header onSearchClick={() => setIsSearchOpen(true)} />
 
       <main className="app-container">
-        <Hero 
-          totalSubjects={totalSubjects} 
-          totalPYQs={totalPYQs} 
-          setSearchQuery={setSearchQuery} 
-        />
+        <div className="hero-banner">
+          <div className="hero-pretitle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Information Technology Curriculum
+          </div>
+          <h1 className="hero-title">Elevate Your<br/>Engineering Journey.</h1>
+          <p className="hero-subtitle">A spatial, AI-powered educational ecosystem designed to accelerate your mastery of complex IT systems.</p>
+        </div>
 
-        <div className="subjects-title-row">
-          <h2 style={{ fontSize: '1.25rem' }}>
-            {searchQuery.trim() ? `Search Results for "${searchQuery.trim()}"` : `Semester ${activeSemester === 'I & II' ? '1 & 2' : activeSemester} Courses & Syllabus`}
-          </h2>
-          <span className="text-secondary" style={{ fontSize: '0.85rem' }}>
-            {subjects.length} courses loaded
+        <div className="search-trigger" onClick={() => setIsSearchOpen(true)}>
+          <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Search courses, topics, or ask AI...</span>
+          </div>
+          <span className="cmd-k">
+            <span className="desktop-shortcut">
+              {!isMobile ? '⌘ K' : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>}
+            </span>
           </span>
         </div>
 
-        <div className="subjects-grid" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div className="year-tabs" id="year-tabs">
+          <button className={`year-btn ${activeSemester === 1 ? 'active' : ''}`} onClick={() => setActiveSemester(1)}>Year I · Basics</button>
+          <button className={`year-btn ${activeSemester === 2 ? 'active' : ''}`} onClick={() => setActiveSemester(2)}>Year II · Core</button>
+          <button className={`year-btn ${activeSemester === 3 ? 'active' : ''}`} onClick={() => setActiveSemester(3)}>Year III · Advanced</button>
+          <button className={`year-btn ${activeSemester === 4 ? 'active' : ''}`} onClick={() => setActiveSemester(4)}>Year IV · Cloud</button>
+        </div>
+
+        <div className="bento-grid" id="bento-grid">
           {subjects.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '60px 0', border: '1px dashed var(--border-color)', borderRadius: '24px' }}>
-              <p className="text-secondary">No subjects match your current search query. Try typing another concept like "normalization", "cns", or "TCP".</p>
+            <div style={{ gridColumn: '1/-1', padding: '64px', textAlign: 'center', color: 'var(--text-secondary)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '24px' }}>
+              Module updates pending for this sector.
             </div>
           ) : (
-            Object.entries(
-              subjects.reduce((acc, sub) => {
-                if (!acc[sub.semester]) acc[sub.semester] = [];
-                acc[sub.semester].push(sub);
-                return acc;
-              }, {} as Record<string, Subject[]>)
-            ).map(([sem, semSubjects]) => (
-              <div key={sem}>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-secondary)', letterSpacing: '0.05em', borderBottom: '1px solid var(--border-color)', paddingBottom: '8px' }}>
-                  Semester {sem}
-                </h3>
-                <div className="subjects-grid">
-                  {semSubjects.map(sub => (
-                    <SubjectCard 
-                      key={sub.id} 
-                      subject={sub} 
-                      onClick={() => setSelectedSubject(sub)} 
-                    />
-                  ))}
-                </div>
-              </div>
+            subjects.map(sub => (
+              <SubjectCard key={sub.id} subject={sub} onClick={() => setSelectedSubject(sub)} />
             ))
           )}
         </div>
       </main>
 
+      <SpotlightSearch 
+        isOpen={isSearchOpen} 
+        onClose={() => setIsSearchOpen(false)} 
+        onSelect={(sub) => {
+          setSelectedSubject(sub);
+          setIsSearchOpen(false);
+        }}
+      />
+
       <Drawer 
         subject={selectedSubject} 
         onClose={() => setSelectedSubject(null)} 
-        showToast={showToast}
       />
 
-      {/* Toast Notification */}
-      <div className={`toast-notif ${toastMessage ? 'active' : ''}`}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#27c160" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 11.01-3-3"/></svg>
-        <span>{toastMessage}</span>
-      </div>
+      <AiPanel 
+        isOpen={isAiOpen} 
+        onToggle={() => setIsAiOpen(!isAiOpen)} 
+        activeSubject={selectedSubject}
+      />
     </>
   );
 }

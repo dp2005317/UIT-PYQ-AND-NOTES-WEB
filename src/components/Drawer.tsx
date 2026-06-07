@@ -1,219 +1,169 @@
 import React, { useState } from 'react';
-import type { Subject, PYQ } from '../data';
+import type { Subject } from '../data';
 import { PdfViewerModal } from './PdfViewerModal';
 
 interface DrawerProps {
   subject: Subject | null;
   onClose: () => void;
-  showToast: (msg: string) => void;
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) => {
+export const Drawer: React.FC<DrawerProps> = ({ subject, onClose }) => {
   const [activeTab, setActiveTab] = useState<'syllabus' | 'pyq' | 'notes' | 'flashcard'>('syllabus');
-  const [downloadStates, setDownloadStates] = useState<Record<string, { status: string; progress: number }>>({});
-  const [flashcardIndex, setFlashcardIndex] = useState(0);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [fcIndex, setFcIndex] = useState(0);
+  const [fcFlipped, setFcFlipped] = useState(false);
   const [viewPdf, setViewPdf] = useState<{url: string, title: string} | null>(null);
 
-  // Reset states when subject changes
   React.useEffect(() => {
     setActiveTab('syllabus');
-    setFlashcardIndex(0);
-    setIsFlipped(false);
+    setFcIndex(0);
+    setFcFlipped(false);
   }, [subject]);
+
+  const navCard = (dir: number) => {
+    if (!subject) return;
+    setFcFlipped(false);
+    setTimeout(() => {
+      setFcIndex((prev) => {
+        const len = subject.flashcards.length;
+        return (prev + dir + len) % len;
+      });
+    }, 200);
+  };
 
   if (!subject) return null;
 
-  const handleDownload = (pyqId: string, pyq: PYQ) => {
-    if (downloadStates[pyqId]?.status === 'downloading' || downloadStates[pyqId]?.status === 'success') return;
-
-    if (pyq.fileUrl) {
-      // Trigger actual download
-      const link = document.createElement('a');
-      link.href = pyq.fileUrl;
-      link.download = pyq.fileUrl.split('/').pop() || `${subject.code}_${pyq.year}_${pyq.type.replace(/\s+/g, '')}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'success', progress: 100 } }));
-      showToast(`Downloaded: ${link.download} Successfully!`);
-      return;
-    }
-
-    setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'downloading', progress: 0 } }));
-
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 10;
-      setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'downloading', progress } }));
-
-      if (progress >= 100) {
-        clearInterval(interval);
-        setDownloadStates(prev => ({ ...prev, [pyqId]: { status: 'success', progress: 100 } }));
-        showToast(`Downloaded: ${subject.code}_${pyq.year}_${pyq.type.replace(/\s+/g, '')}.pdf Successfully!`);
-      }
-    }, 100);
-  };
-
-  const nextFlashcard = (dir: number) => {
-    setIsFlipped(false);
-    setTimeout(() => {
-      setFlashcardIndex((prev) => {
-        const count = subject.flashcards.length;
-        return (prev + dir + count) % count;
-      });
-    }, 150);
-  };
-
   return (
-    <div className={`drawer-overlay ${subject ? 'active' : ''}`} onClick={onClose}>
-      <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
-        <div className="drawer-header">
-          <div>
-            <span className="subject-code">{subject.code}</span>
-            <h2 className="subject-name" style={{ marginTop: '8px' }}>{subject.name}</h2>
-            <p className="subject-desc" style={{ marginTop: '4px', marginBottom: 0 }}>{subject.description}</p>
+    <>
+      <div className={`spatial-drawer-overlay ${subject ? 'active' : ''}`} onClick={onClose}>
+        <div className="spatial-drawer" onClick={(e) => e.stopPropagation()}>
+          <div className="drawer-header">
+            <div>
+              <span className="card-code" style={{ marginBottom: '12px', display: 'inline-block' }}>{subject.code}</span>
+              <h2 style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--text-primary)', lineHeight: 1.1, marginBottom: '8px' }}>{subject.name}</h2>
+              <p style={{ color: 'var(--text-secondary)' }}>{subject.description}</p>
+            </div>
+            <button className="drawer-close" onClick={onClose}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
           </div>
-          <button className="drawer-close" onClick={onClose}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
-          </button>
-        </div>
 
-        {/* Tab Buttons */}
-        <div className="drawer-tabs">
-          <button className={`drawer-tab-btn ${activeTab === 'syllabus' ? 'active' : ''}`} onClick={() => setActiveTab('syllabus')}>Syllabus</button>
-          <button className={`drawer-tab-btn ${activeTab === 'pyq' ? 'active' : ''}`} onClick={() => setActiveTab('pyq')}>Past PYQs</button>
-          <button className={`drawer-tab-btn ${activeTab === 'notes' ? 'active' : ''}`} onClick={() => setActiveTab('notes')}>Notes</button>
-          <button className={`drawer-tab-btn ${activeTab === 'flashcard' ? 'active' : ''}`} onClick={() => setActiveTab('flashcard')}>Prep Cards</button>
-        </div>
+          <div className="drawer-tabs">
+            <div className={`drawer-tab ${activeTab === 'syllabus' ? 'active' : ''}`} onClick={() => setActiveTab('syllabus')}>Syllabus</div>
+            <div className={`drawer-tab ${activeTab === 'pyq' ? 'active' : ''}`} onClick={() => setActiveTab('pyq')}>PYQs</div>
+            <div className={`drawer-tab ${activeTab === 'notes' ? 'active' : ''}`} onClick={() => setActiveTab('notes')}>Revision Notes</div>
+            <div className={`drawer-tab ${activeTab === 'flashcard' ? 'active' : ''}`} onClick={() => setActiveTab('flashcard')}>Spatial Flashcards</div>
+          </div>
 
-        {/* Scrollable Body */}
-        <div className="drawer-body">
-          {activeTab === 'syllabus' && (
-            <div style={{ animation: 'fadeIn 0.3s ease' }}>
-              {subject.modules.map((mod, i) => (
+          <div className="drawer-body">
+            {activeTab === 'syllabus' && (
+              subject.modules.map((m, i) => (
                 <div key={i} className="module-item">
-                  <h3 className="module-title">{mod.title}</h3>
-                  <div style={{ marginTop: '8px' }}>
-                    {mod.topics.map((topic, j) => (
-                      <span key={j} className="module-topic-tag">{topic}</span>
-                    ))}
+                  <h3 className="module-title">{m.title}</h3>
+                  <div>
+                    {m.topics.map((t, j) => <span key={j} className="tag">{t}</span>)}
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
+              ))
+            )}
 
-          {activeTab === 'pyq' && (
-            <div className="pyq-list">
-              {subject.pyqs.map((pyq, i) => {
-                const pyqId = `${subject.id}_${pyq.year}_${pyq.type.replace(/\s+/g, '_')}`;
-                const state = downloadStates[pyqId];
-                
-                return (
+            {activeTab === 'pyq' && (
+              (!subject.pyqs || subject.pyqs.length === 0) ? (
+                <p className="text-secondary">No papers available yet.</p>
+              ) : (
+                subject.pyqs.map((p, i) => (
                   <div key={i} className="pyq-item">
-                    <div className="pyq-info">
-                      <div className="pyq-icon-box">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
-                      </div>
-                      <div>
-                        <h4 className="pyq-name">{pyq.year} - {pyq.type} Exam</h4>
-                        <p className="pyq-meta">
-                          <span>Duration: {pyq.duration}</span>
-                          <span>•</span>
-                          <span>Format: PDF Document</span>
-                        </p>
-                      </div>
+                    <div>
+                      <h4 style={{ fontSize: '1.1rem', marginBottom: '4px', color: 'var(--text-primary)' }}>{p.year} Exam</h4>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{p.type} • Verified PDF</p>
                     </div>
-
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      {pyq.fileUrl && (
+                    <div style={{ display: 'flex', gap: '8px', width: window.innerWidth <= 768 ? '100%' : 'auto' }}>
+                      {p.fileUrl && (
                         <button 
-                          className="download-btn"
-                          onClick={() => setViewPdf({ url: pyq.fileUrl!, title: `${subject.name} - ${pyq.year} ${pyq.type}` })}
-                          style={{ minWidth: '80px', backgroundColor: 'var(--bg-tertiary)' }}
+                          className="pyq-btn" 
+                          style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-primary)' }}
+                          onClick={() => setViewPdf({ url: p.fileUrl!, title: `${subject.code} ${p.year} ${p.type}` })}
                         >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
-                          <span>View</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+                          View
                         </button>
                       )}
-                      <button 
-                        className={`download-btn ${state?.status === 'downloading' ? 'downloading' : ''} ${state?.status === 'success' ? 'success' : ''}`}
-                        onClick={() => handleDownload(pyqId, pyq)}
-                        disabled={state?.status === 'downloading'}
-                      >
-                        {state?.status === 'downloading' ? (
-                          <>
-                            <span>Downloading {state.progress}%</span>
-                            <div className="download-progress-bar" style={{ width: `${state.progress}%`, display: 'block' }}></div>
-                          </>
-                        ) : state?.status === 'success' ? (
-                          <span>✓ Saved</span>
-                        ) : (
-                          <>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
-                            <span>Download</span>
-                          </>
-                        )}
+                      <button className="pyq-btn" onClick={(e) => {
+                        const target = e.currentTarget;
+                        target.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Saved`;
+                        target.style.background = '#27c160';
+                        if (p.fileUrl) {
+                          const link = document.createElement('a');
+                          link.href = p.fileUrl;
+                          link.download = p.fileUrl.split('/').pop() || `${subject.code}_${p.year}.pdf`;
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }
+                      }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download
                       </button>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          )}
+                ))
+              )
+            )}
 
-          {activeTab === 'notes' && (
-            <div className="notes-list">
-              {subject.notes.map((note, i) => (
-                <div key={i} className="notes-block">
-                  <h4 className="notes-title">{note.title}</h4>
-                  <div className="notes-body">
-                    <p>{note.content}</p>
+            {activeTab === 'notes' && (
+              (!subject.notes || subject.notes.length === 0) ? (
+                <p className="text-secondary">No notes available.</p>
+              ) : (
+                subject.notes.map((n, i) => (
+                  <div key={i} className="module-item" style={{ borderLeft: '3px solid var(--text-primary)' }}>
+                    <h4 style={{ marginBottom: '8px', fontWeight: 600, color: 'var(--text-primary)' }}>{n.title}</h4>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.5 }}>{n.content}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))
+              )
+            )}
 
-          {activeTab === 'flashcard' && subject.flashcards.length > 0 && (
-            <div className="flashcard-wrapper">
-              <p className="text-secondary" style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-                Click the card to flip it and view the answer!
-              </p>
-              
-              <div className="flashcard-box" onClick={() => setIsFlipped(!isFlipped)}>
-                <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`}>
-                  <div className="flashcard-face flashcard-front">
-                    <span className="card-label">Question</span>
-                    <p className="card-text">{subject.flashcards[flashcardIndex].question}</p>
+            {activeTab === 'flashcard' && (
+              (!subject.flashcards || subject.flashcards.length === 0) ? (
+                <p className="text-secondary">No flashcards available.</p>
+              ) : (
+                <>
+                  <div style={{ textAlign: 'center', marginBottom: '24px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                    Click card to flip spatially.
                   </div>
-                  <div className="flashcard-face flashcard-back">
-                    <span className="card-label" style={{ color: 'var(--text-primary)' }}>Correct Answer</span>
-                    <p className="card-text">{subject.flashcards[flashcardIndex].answer}</p>
+                  <div className="flashcard-scene" onClick={() => setFcFlipped(!fcFlipped)}>
+                    <div className={`flashcard ${fcFlipped ? 'flipped' : ''}`}>
+                      <div className="flashcard-face flashcard-front">
+                        <span className="tag" style={{ margin: '0 0 16px 0', background: 'rgba(255,255,255,0.15)' }}>Question</span>
+                        <h3 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', fontWeight: 500, color: 'var(--text-primary)' }}>
+                          {subject.flashcards[fcIndex].question || (subject.flashcards[fcIndex] as any).q}
+                        </h3>
+                      </div>
+                      <div className="flashcard-face flashcard-back">
+                        <span className="tag" style={{ margin: '0 0 16px 0', background: 'rgba(255,255,255,0.25)', color: '#fff' }}>Answer</span>
+                        <h3 style={{ fontSize: 'clamp(1rem, 3.5vw, 1.25rem)', fontWeight: 400, color: 'var(--text-primary)', lineHeight: 1.5 }}>
+                          {subject.flashcards[fcIndex].answer || (subject.flashcards[fcIndex] as any).a}
+                        </h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="flashcard-controls">
-                <button className="btn-icon" onClick={() => nextFlashcard(-1)} style={{ width: '44px', height: '44px' }}>
-                  <span style={{ transform: 'rotate(180deg)', display: 'inline-block' }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-                  </span>
-                </button>
-                <span className="flashcard-num-indicator">
-                  {flashcardIndex + 1} / {subject.flashcards.length}
-                </span>
-                <button className="btn-icon" onClick={() => nextFlashcard(1)} style={{ width: '44px', height: '44px' }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-                </button>
-              </div>
-            </div>
-          )}
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px' }}>
+                    <button className="drawer-close" onClick={() => navCard(-1)}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.1rem' }}>
+                      {fcIndex + 1} <span style={{ color: 'var(--text-tertiary)', fontWeight: 400 }}>/</span> {subject.flashcards.length}
+                    </span>
+                    <button className="drawer-close" onClick={() => navCard(1)}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                  </div>
+                </>
+              )
+            )}
+          </div>
         </div>
       </div>
+      
       {viewPdf && (
         <PdfViewerModal 
           url={viewPdf.url} 
@@ -229,6 +179,6 @@ export const Drawer: React.FC<DrawerProps> = ({ subject, onClose, showToast }) =
           }}
         />
       )}
-    </div>
+    </>
   );
 };

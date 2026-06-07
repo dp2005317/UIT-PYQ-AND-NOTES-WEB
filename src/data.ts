@@ -14,10 +14,10 @@ export interface Flashcard {
 }
 
 export interface PYQ {
-  year: number;
+  year: number | string;
   type: string;
   duration: string;
-  questions: number;
+  questions?: number;
   fileUrl?: string;
 }
 
@@ -253,7 +253,7 @@ export const SYLLABUS_DATA: SyllabusData = {
         { title: 'Module 4: Algebraic Structures', topics: ['Semi Groups, Monoids, Groups, Rings, Fields', 'Boolean Algebra'] },
         { title: 'Module 5: Graphs and Trees', topics: ['Connectivity, Path, Cycle, Isomorphism', 'Eulerian/Hamiltonian Walks, Graph Colouring, Planar Graphs'] }
       ],
-      notes: [], flashcards: [], pyqs: [{ year: 2024, type: 'Mid Sem', duration: '2 Hrs', questions: 0, fileUrl: '/pyqs/Discrete Mathematics.pdf' }]
+      notes: [], flashcards: [], pyqs: [{"year": "2022-23", "type": "Mid Sem", "fileUrl": "/pyqs/2022-23_Discrete_Mathematics.pdf", "duration": "2 Hrs"}, {"year": "2023-24", "type": "Mid Sem", "fileUrl": "/pyqs/2023-24_Discrete_Mathematics.pdf", "duration": "2 Hrs"}, {"year": "2024-25", "type": "Mid Sem", "fileUrl": "/pyqs/2024-25_Discrete_Mathematics.pdf", "duration": "2 Hrs"}]
     },
     {
       id: 'coa402',
